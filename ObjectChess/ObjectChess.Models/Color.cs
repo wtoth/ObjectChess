@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ObjectChess.Models
 {
-    public enum PieceType
+    public enum Color
     {
-        King = 0,
-        Queen = 1
+        White = 0,
+        Black = 1
     }
 }

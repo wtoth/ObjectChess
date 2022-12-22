@@ -7,6 +7,10 @@ namespace ObjectChess.Models
 {
     public class King: Piece
     {
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
         public void CanCastle()
         {
             throw new System.NotImplementedException();
@@ -17,12 +21,12 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        public void DiagonalMove()
+        private void DiagonalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public M HorizontalMove()
+        private void HorizontalMove()
         {
             throw new System.NotImplementedException();
         }

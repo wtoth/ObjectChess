@@ -7,7 +7,11 @@ namespace ObjectChess.Models
 {
     public class Knight : Piece
     {
-        public void KnightMove()
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        private void KnightMove()
         {
             throw new System.NotImplementedException();
         }

@@ -8,8 +8,7 @@ namespace ObjectChess.Models
 {
     public abstract class Piece
     {
-        int Color { get; set; }
-        bool Alive { get; set; }
+        Color Color { get; set; }
 
         public Square Square
         {
@@ -19,7 +18,7 @@ namespace ObjectChess.Models
             }
         }
 
-        public List<string> PossibleMoves
+        public List<List<int>> PossibleMoves
         {
             get => default;
             set
@@ -37,10 +36,7 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        public void Move()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Move();
 
         public void CalcPossibleMoves()
         {
@@ -48,6 +44,11 @@ namespace ObjectChess.Models
         }
 
         public void SetupPiece()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IsPiece()
         {
             throw new System.NotImplementedException();
         }

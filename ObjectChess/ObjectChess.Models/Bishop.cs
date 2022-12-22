@@ -7,7 +7,11 @@ namespace ObjectChess.Models
 {
     public class Bishop: Piece
     {
-        public void DiagonalMove()
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        private void DiagonalMove()
         {
             throw new System.NotImplementedException();
         }

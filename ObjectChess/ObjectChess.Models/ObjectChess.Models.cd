@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="ObjectChess.Models.Game" Collapsed="true">
+  <Class Name="ObjectChess.Models.Game">
     <Position X="17.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAQAAAhIQAQAAAAAAAAABAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <HashCode>AAEAQAAAhIQAQAAAAQAAAABAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="ObjectChess.Models.Piece">
     <Position X="7.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAIQAAAAAAAECAAAAAAAAAAQAAAAggAAAAAE=</HashCode>
+      <HashCode>AAAAACAAAIQAAAAAAQECAAAAAAAAAAAAAAAggAAAAAE=</HashCode>
       <FileName>Piece.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,50 +31,57 @@
   <Class Name="ObjectChess.Models.King">
     <Position X="2.25" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAABAEAAAAAAAQAAAAIABAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABIAAAAAABAEAAAAAAAQAAAAIABAAAAAAAAA=</HashCode>
       <FileName>King.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ObjectChess.Models.Queen">
     <Position X="4.5" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAIABAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAIABAAAAAAAAA=</HashCode>
       <FileName>Queen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ObjectChess.Models.Rook">
     <Position X="6.75" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
       <FileName>Rook.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ObjectChess.Models.Bishop">
     <Position X="9" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Bishop.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ObjectChess.Models.Knight">
-    <Position X="13.5" Y="6" Width="1.5" />
+    <Position X="11" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Knight.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ObjectChess.Models.Pawn">
-    <Position X="11.25" Y="6" Width="1.75" />
+    <Position X="13" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAIAAAgAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAIAAAgAAAAAAA=</HashCode>
       <FileName>Pawn.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="ObjectChess.Models.PieceType" Collapsed="true">
     <Position X="16" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PieceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ObjectChess.Models.Color">
+    <Position X="16" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Color.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

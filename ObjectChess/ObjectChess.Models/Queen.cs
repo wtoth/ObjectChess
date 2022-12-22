@@ -7,17 +7,21 @@ namespace ObjectChess.Models
 {
     public class Queen: Piece
     {
-        public void DiagonalMove()
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        private void DiagonalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public void HorizontalMove()
+        private void HorizontalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public void VerticalMove()
+        private void VerticalMove()
         {
             throw new System.NotImplementedException();
         }

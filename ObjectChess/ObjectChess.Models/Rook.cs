@@ -7,12 +7,16 @@ namespace ObjectChess.Models
 {
     public class Rook: Piece
     {
-        public void HorizontalMove()
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        private void HorizontalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public void VerticalMove()
+        private void VerticalMove()
         {
             throw new System.NotImplementedException();
         }

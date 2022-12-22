@@ -7,17 +7,21 @@ namespace ObjectChess.Models
 {
     public class Pawn : Piece
     {
+        public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
         public void Promote()
         {
             throw new System.NotImplementedException();
         }
 
-        public void DiagonalMove()
+        private void DiagonalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public void VerticalMove()
+        private void VerticalMove()
         {
             throw new System.NotImplementedException();
         }

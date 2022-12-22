@@ -9,9 +9,15 @@ namespace ObjectChess.Models
 {
     public class Game
     {
-        public const int WHITE = 0;
-        public const int BLACK = 1;
         public int CurrTurn = WHITE;
+
+        public List<Piece> Captured
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         public void Move()
         {

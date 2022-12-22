@@ -41,5 +41,10 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
+
+        public bool IsPiece()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
