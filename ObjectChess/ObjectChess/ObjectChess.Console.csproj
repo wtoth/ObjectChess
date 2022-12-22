@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectChess.Models\ObjectChess.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ObjectChess
+namespace ObjectChess.Models
 {
-    internal class Board
-    {
-
-    }
 }
