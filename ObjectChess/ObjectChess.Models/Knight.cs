@@ -7,6 +7,7 @@ namespace ObjectChess.Models
 {
     public class Knight : Piece
     {
+        public Knight(Square square, Color color) : base(square, color) { }
         public override void Move()
         {
             throw new System.NotImplementedException();

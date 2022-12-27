@@ -10,13 +10,7 @@ namespace ObjectChess.Models
     {
         Color Color { get; set; }
 
-        public Square Square
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        Square Square { get; set; }
 
         public List<List<int>> PossibleMoves
         {
@@ -24,6 +18,11 @@ namespace ObjectChess.Models
             set
             {
             }
+        }
+        public Piece(Square square, Color color)
+        {
+            this.Square = square;
+            this.Color = color;
         }
 
         public void CanMove()
@@ -52,11 +51,5 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
-
-        public Piece()
-        {
-
-        }
-        
     }
 }

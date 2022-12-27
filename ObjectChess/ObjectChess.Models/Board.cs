@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace ObjectChess.Models
 {
-    internal class Board
+    public class Board
     {
-        public List<Square> BoardList
+        public Square[,] BoardArray = new Square[8,8];
+
+        public Board()
         {
-            get => default;
-            set
+            for (int i = 0; i < 8; i++)
             {
+                for (int j = 0; j < 8; j++)
+                {
+                    List<int> position = new List<int> { i, j };
+                    BoardArray[i, j] = new Square(position, false);
+                }
             }
+
         }
 
         public bool IsCheckMate()

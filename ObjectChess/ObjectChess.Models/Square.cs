@@ -6,30 +6,17 @@ using System.Threading.Tasks;
 
 namespace ObjectChess.Models
 {
-    internal class Square
+    public class Square
     {
-        public List<int> Position
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public List<int> Position { get; set; }
 
-        public Piece Piece
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public Object Piece { get; set; }
 
-        public bool Attacked
-        {
-            get => default;
-            set
-            {
-            }
+        public bool Attacked { get; set; }
+        public Square(List<int> position, bool attacked = false) 
+        { 
+            this.Position = position;
+            this.Attacked= attacked;
         }
 
         public bool SquareAttacked()

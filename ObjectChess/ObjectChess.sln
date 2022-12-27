@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectChess", "ObjectChess\ObjectChess.csproj", "{95CBD543-068B-494C-8F6C-CFE716C4F300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectChess.Console", "ObjectChess\ObjectChess.Console.csproj", "{95CBD543-068B-494C-8F6C-CFE716C4F300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectChess.Models", "ObjectChess.Models\ObjectChess.Models.csproj", "{EF66D395-1D3F-4A86-B5A2-13CDDF7026F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectChess.Models", "ObjectChess.Models\ObjectChess.Models.csproj", "{EF66D395-1D3F-4A86-B5A2-13CDDF7026F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
