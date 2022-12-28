@@ -1,4 +1,5 @@
-﻿using ObjectChess.Models;
+﻿using ObjectChess.ConsoleApp;
+using ObjectChess.Models;
 using System.ComponentModel;
 
 namespace ObjectChess
@@ -8,11 +9,21 @@ namespace ObjectChess
         static void Main(string[] args)
         {
             Game Game = new Game();
+            ConsoleInterpreter Interpreter = new ConsoleInterpreter();
             bool playing = true;
             //instantiate the board and it's squares
-            Board board = Game.SetupBoard();
-            Game.SetupPieces(board);
-            Game.GetBoard(board).ForEach(x=>Console.WriteLine(x));
+            string[,] DefaultPieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
+                                                 {"p","p","p","p","p","p","p","p"},
+                                                 {"","","","","","","",""},
+                                                 {"","","","","","","",""},
+                                                 {"","","","","","","",""},
+                                                 {"","","","","","","",""},
+                                                 {"p","p","p","p","p","p","p","p"},
+                                                 {"r","n","b","q","k","b","n","r"}};
+            Board Board = Game.SetupBoard();
+            Game.SetupPieces(Board, DefaultPieceSetup);
+            //var check = Game.GetBoard(board);
+            Interpreter.PrintOutput(Game.GetBoard(Board));
 
             //while (playing)
             //{

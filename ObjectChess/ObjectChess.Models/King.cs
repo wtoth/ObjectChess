@@ -7,10 +7,17 @@ namespace ObjectChess.Models
 {
     public class King: Piece
     {
-        public King(Square square, Color color) : base(square, color) { }
+        public King(Square square, Color color) : base(square, color) 
+        {
+            PieceType = PieceType.King;
+        }
         public override void Move()
         {
             throw new System.NotImplementedException();
+        }
+        public override char GetAlgNotation()
+        {
+            return 'K';
         }
         public void CanCastle()
         {

@@ -10,15 +10,7 @@ namespace ObjectChess.Models
     public class Game
     {
         public int CurrTurn = (int)Color.White;
-
-        public List<Piece> Captured
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
+        public List<Piece> Captured { get; set; }
         public void Move()
         {
             throw new System.NotImplementedException();
@@ -33,18 +25,19 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
-        //Need to solve how to get piece type here and how to output them in a aesthetically pleasing way
         public List<string> GetBoard(Board board)
         {
-            List<string> boardOutput = new List<string>();
+            var boardOutput = new List<string>();
             foreach (var square in board.BoardArray)
             {
-                string position = square.Position[0].ToString() + square.Position[1].ToString();
-                boardOutput.Add(position);
-            }
-            foreach (var piece in boardOutput)
-            {
-                Console.Write(piece.ToString());
+                if (square.Piece != null)
+                {
+                    var type = square.Piece.GetAlgNotation();
+                    boardOutput.Add(type.ToString());
+                } else
+                {
+                    boardOutput.Add("-");
+                }
             }
             return boardOutput;
         }
@@ -59,25 +52,14 @@ namespace ObjectChess.Models
             Board board = new Board();
             return board;
         }
-
         public List<int> AlgebraicNotationToRankFile()
         {
             throw new System.NotImplementedException();
         }
-
         //This will allow us to setup custom piece configs in the future
         //Look into FEN setup process in the future
-        public void SetupPieces(Board board)
+        public void SetupPieces(Board board, string[,] PieceSetup)
         {
-            string[,] PieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"r","n","b","k","q","b","n","r"}};
-
             for (int i = 0; i < 8; i++)
             {
                 for (int j=0; j < 8; j++)

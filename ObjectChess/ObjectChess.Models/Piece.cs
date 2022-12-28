@@ -9,9 +9,8 @@ namespace ObjectChess.Models
     public abstract class Piece
     {
         Color Color { get; set; }
-
         Square Square { get; set; }
-
+        public PieceType PieceType { get; set; }
         public List<List<int>> PossibleMoves
         {
             get => default;
@@ -24,12 +23,11 @@ namespace ObjectChess.Models
             this.Square = square;
             this.Color = color;
         }
-
         public void CanMove()
         {
             throw new System.NotImplementedException();
         }
-
+        public abstract char GetAlgNotation();
         public void VerticalMove()
         {
             throw new System.NotImplementedException();

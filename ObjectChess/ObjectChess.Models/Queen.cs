@@ -7,10 +7,16 @@ namespace ObjectChess.Models
 {
     public class Queen: Piece
     {
-        public Queen(Square square, Color color) : base(square, color) { }
+        public Queen(Square square, Color color) : base(square, color) {
+            this.PieceType = PieceType.Queen;
+        }
         public override void Move()
         {
             throw new System.NotImplementedException();
+        }
+        public override char GetAlgNotation()
+        {
+            return 'Q';
         }
         private void DiagonalMove()
         {

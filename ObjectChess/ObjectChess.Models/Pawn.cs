@@ -7,10 +7,17 @@ namespace ObjectChess.Models
 {
     public class Pawn : Piece
     {
-        public Pawn(Square square, Color color) : base(square, color) { }
+        public Pawn(Square square, Color color) : base(square, color) 
+        {
+            PieceType = PieceType.Pawn;
+        }
         public override void Move()
         {
             throw new System.NotImplementedException();
+        }
+        public override char GetAlgNotation()
+        {
+            return 'P';
         }
         public void Promote()
         {
