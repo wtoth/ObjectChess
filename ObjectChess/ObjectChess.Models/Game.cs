@@ -106,5 +106,111 @@ namespace ObjectChess.Models
                 }
             }
         }
+        public void SetupPieces(Board board, string fen)
+        {
+            int rank = 0;
+            int file = 0;
+            foreach (var letter in fen)
+            {
+                if (Char.IsNumber(letter))
+                {
+                    if (letter == '8')
+                    {
+                        if (rank == 7)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            file = file + (int)Char.GetNumericValue(letter);
+                        }
+                    }
+                    else
+                    {
+                        file = file + (int)Char.GetNumericValue(letter);
+                    }
+                }
+                else if (letter == '/')
+                {
+                    rank++;
+                    file = 0;
+                }
+                else
+                {
+                    if (letter == 'k')
+                    {
+                        King king = new King(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = king;
+                        file++;
+                    }
+                    else if (letter == 'q')
+                    {
+                        Queen queen = new Queen(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = queen;
+                        file++;
+                    }
+                    else if (letter == 'r')
+                    {
+                        Rook rook = new Rook(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = rook;
+                        file++;
+                    }
+                    else if (letter == 'n')
+                    {
+                        Knight knight = new Knight(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = knight;
+                        file++;
+                    }
+                    else if (letter == 'b')
+                    {
+                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = bishop;
+                        file++;
+                    }
+                    else if (letter == 'p')
+                    {
+                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.Black);
+                        board.BoardArray[rank, file].Piece = pawn;
+                        file++;
+                    }
+                    if (letter == 'K')
+                    {
+                        King king = new King(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = king;
+                        file++;
+                    }
+                    else if (letter == 'Q')
+                    {
+                        Queen queen = new Queen(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = queen;
+                        file++;
+                    }
+                    else if (letter == 'R')
+                    {
+                        Rook rook = new Rook(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = rook;
+                        file++;
+                    }
+                    else if (letter == 'N')
+                    {
+                        Knight knight = new Knight(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = knight;
+                        file++;
+                    }
+                    else if (letter == 'B')
+                    {
+                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = bishop;
+                        file++;
+                    }
+                    else if (letter == 'P')
+                    {
+                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.White);
+                        board.BoardArray[rank, file].Piece = pawn;
+                        file++;
+                    }
+                }
+            }
+        }
     }
 }

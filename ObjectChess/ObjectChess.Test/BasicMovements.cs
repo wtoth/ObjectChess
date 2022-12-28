@@ -25,7 +25,6 @@ namespace ObjectChess.Test
                                                   {"r","n","b","q","k","b","n","r"}};
             PawnGame.SetupPieces(Board, PieceSetup);
             //PawnGame.Move("A2","A3");
-            //PawnGame.Move("D7","D5");
 
             Game CorrectPawnGame = new Game();
             Board CorrectBoard = CorrectPawnGame.SetupBoard();
@@ -176,9 +175,9 @@ namespace ObjectChess.Test
         {
             Game Game = new Game();
             Board Board = Game.SetupBoard();
-            string[,] PieceSetup = new string[,] {{"","","","","","","","k"},
-                                                  {"","","","","","","","q"},
-                                                  {"","","","","","","","r"},
+            string[,] PieceSetup = new string[,] {{"","","","","","","",""},
+                                                  {"","","","","","","",""},
+                                                  {"","","","","","","",""},
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},

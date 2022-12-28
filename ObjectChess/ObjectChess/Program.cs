@@ -8,18 +8,29 @@ namespace ObjectChess
     {
         static void Main(string[] args)
         {
+            //Game Game = new Game();
+            //ConsoleInterpreter Interpreter = new ConsoleInterpreter();
+            //bool playing = true;
+            ////instantiate the board and it's squares
+            //string[,] DefaultPieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
+            //                                     {"p","p","p","p","p","p","p","p"},
+            //                                     {"","","","","","","",""},
+            //                                     {"","","","","","","",""},
+            //                                     {"","","","","","","",""},
+            //                                     {"","","","","","","",""},
+            //                                     {"p","p","p","p","p","p","p","p"},
+            //                                     {"r","n","b","q","k","b","n","r"}};
+            //Board Board = Game.SetupBoard();
+            //Game.SetupPieces(Board, DefaultPieceSetup);
+            ////var check = Game.GetBoard(board);
+            //Console.WriteLine(Game.GetBoard(Board).ToString());
+            //Interpreter.PrintOutput(Game.GetBoard(Board));
+
             Game Game = new Game();
             ConsoleInterpreter Interpreter = new ConsoleInterpreter();
             bool playing = true;
             //instantiate the board and it's squares
-            string[,] DefaultPieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"r","n","b","q","k","b","n","r"}};
+            string DefaultPieceSetup = "8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8";
             Board Board = Game.SetupBoard();
             Game.SetupPieces(Board, DefaultPieceSetup);
             //var check = Game.GetBoard(board);
