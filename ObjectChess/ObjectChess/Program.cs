@@ -23,6 +23,7 @@ namespace ObjectChess
             Board Board = Game.SetupBoard();
             Game.SetupPieces(Board, DefaultPieceSetup);
             //var check = Game.GetBoard(board);
+            Console.WriteLine(Game.GetBoard(Board).ToString());
             Interpreter.PrintOutput(Game.GetBoard(Board));
 
             //while (playing)
