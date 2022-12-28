@@ -10,43 +10,19 @@ namespace ObjectChess.Test
         {
             Assert.Equal(1, 1);
         }
-        [Fact] 
-        public void GetBoardTest() 
-        {
-            Game Game = new Game();
-            Board Board = Game.SetupBoard();
-            string[,] PieceSetup = new string[,] {{"r","n","b","q","k","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""},
-                                                 {"p","","","","","","",""}};
-            Game.SetupPieces(Board, PieceSetup);
-            List<string> correctGetBoard = new List<string>() { "R", "N", "B", "Q", "K", "-", "-", "-", 
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-",
-                                                                "P", "-", "-", "-", "-", "-", "-", "-"};
-            Assert.Equal(Game.GetBoard(Board), correctGetBoard);
-        }
         [Fact]
         public void PawnMove()
         {
             Game PawnGame = new Game();
             Board Board = PawnGame.SetupBoard();
             string[,] PieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"r","n","b","q","k","b","n","r"}};
+                                                  {"p","p","p","p","p","p","p","p"},
+                                                  {"","","","","","","",""},
+                                                  {"","","","","","","",""},
+                                                  {"","","","","","","",""},
+                                                  {"","","","","","","",""},
+                                                  {"p","p","p","p","p","p","p","p"},
+                                                  {"r","n","b","q","k","b","n","r"}};
             PawnGame.SetupPieces(Board, PieceSetup);
             //PawnGame.Move("A2","A3");
             //PawnGame.Move("D7","D5");
@@ -54,13 +30,13 @@ namespace ObjectChess.Test
             Game CorrectPawnGame = new Game();
             Board CorrectBoard = CorrectPawnGame.SetupBoard();
             string[,] CorrectPieceSetup = new string[,] {{"r","n","b","q","k","b","n","r"},
-                                                 {"","p","p","p","p","p","p","p"},
-                                                 {"p","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"","","","","","","",""},
-                                                 {"p","p","p","p","p","p","p","p"},
-                                                 {"r","n","b","q","k","b","n","r"}};
+                                                         {"","p","p","p","p","p","p","p"},
+                                                         {"p","","","","","","",""},
+                                                         {"","","","","","","",""},
+                                                         {"","","","","","","",""},
+                                                         {"","","","","","","",""},
+                                                         {"p","p","p","p","p","p","p","p"},
+                                                         {"r","n","b","q","k","b","n","r"}};
             CorrectPawnGame.SetupPieces(CorrectBoard, CorrectPieceSetup);
 
             Assert.Equal(PawnGame.GetBoard(Board), CorrectPawnGame.GetBoard(CorrectBoard));
