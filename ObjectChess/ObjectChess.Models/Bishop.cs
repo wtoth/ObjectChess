@@ -41,6 +41,11 @@ namespace ObjectChess.Models
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
                     break;
                 }
                 else
@@ -57,6 +62,11 @@ namespace ObjectChess.Models
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
                     break;
                 }
                 else
@@ -73,6 +83,11 @@ namespace ObjectChess.Models
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
                     break;
                 }
                 else
@@ -89,6 +104,11 @@ namespace ObjectChess.Models
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
                     break;
                 }
                 else

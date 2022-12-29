@@ -17,7 +17,23 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            throw new System.NotImplementedException();
+            List<List<int>> possiblemoves = new List<List<int>>();
+            List<List<int>> possiblediagonalmoves = DiagonalMove();
+            foreach (var move in possiblediagonalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            List<List<int>> possibleverticalmoves = VerticalMove();
+            foreach (var move in possibleverticalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            List<List<int>> possiblehorizontalmoves = HorizontalMove();
+            foreach (var move in possiblehorizontalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            this.PossibleMoves = possiblemoves;
         }
         public override char GetAlgNotation()
         {
@@ -33,17 +49,17 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        private void DiagonalMove()
+        private List<List<int>> DiagonalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        private void HorizontalMove()
+        private List<List<int>> HorizontalMove()
         {
             throw new System.NotImplementedException();
         }
 
-        public void VerticalMove()
+        public List<List<int>> VerticalMove()
         {
             throw new System.NotImplementedException();
         }

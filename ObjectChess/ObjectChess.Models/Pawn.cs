@@ -46,22 +46,22 @@ namespace ObjectChess.Models
             //Checks if there in either of the attacking positions for the pawn
             if (this.Color == Color.White)
             {   
-                if (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].IsPiece())
+                if ((this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].IsPiece()) & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Piece.Color == Color.Black))
                 {
                     possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Position);
                 }
-                if (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].IsPiece())
+                if (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Piece.Color == Color.Black))
                 {
                     possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Position);
                 }
             }
             else 
             {
-                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] + 1)].IsPiece())
+                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] + 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Piece.Color == Color.White))
                 {
                     possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] + 1)].Position);
                 }
-                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] - 1)].IsPiece())
+                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] - 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Piece.Color == Color.White))
                 {
                     possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] - 1)].Position);
                 }
