@@ -26,7 +26,14 @@ namespace ObjectChess.Models
         }
         public bool IsPiece()
         {
-            throw new System.NotImplementedException();
+            if (Piece == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

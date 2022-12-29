@@ -7,11 +7,15 @@ namespace ObjectChess.Models
 {
     public class King: Piece
     {
-        public King(Square square, Color color) : base(square, color) 
+        public King(Square square, Color color, Board board) : base(square, color, board) 
         {
             PieceType = PieceType.King;
         }
         public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        public override void CalcPossibleMoves()
         {
             throw new System.NotImplementedException();
         }

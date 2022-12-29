@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -42,19 +43,101 @@ namespace ObjectChess.Models
             return boardOutput;
         }
 
-        public void PossibleMoves()
+        public List<List<int>> PossibleMoves(List<int> position, Board board)
         {
-            throw new System.NotImplementedException();
+            if (board.BoardArray[position[0], position[1]].IsPiece())
+            {
+                board.BoardArray[position[0], position[1]].Piece.CalcPossibleMoves();
+                return board.BoardArray[position[0], position[1]].Piece.PossibleMoves;
+            }
+            else
+            {
+                throw new InvalidOperationException("No Piece Found here");
+            }
         }
-
         public Board SetupBoard()
         {
             Board board = new Board();
             return board;
         }
-        public List<int> AlgebraicNotationToRankFile()
+        public List<int> AlgebraicNotationToRankFile(string input)
         {
-            throw new System.NotImplementedException();
+            List<int> RankFile = new List<int>();
+            char[] letters = input.ToCharArray();
+            int rank = (int)Char.GetNumericValue(letters[1]) - 1;
+            RankFile.Add(rank);
+
+            if (char.ToLower(letters[0]) == 'a')
+            {
+                RankFile.Add(0);
+            }
+            else if (char.ToLower(letters[0]) == 'b')
+            {
+                RankFile.Add(1);
+            }
+            else if (char.ToLower(letters[0]) == 'c')
+            {
+                RankFile.Add(2);
+            }
+            else if (char.ToLower(letters[0]) == 'd')
+            {
+                RankFile.Add(3);
+            }
+            else if (char.ToLower(letters[0]) == 'e')
+            {
+                RankFile.Add(4);
+            }
+            else if (char.ToLower(letters[0]) == 'f')
+            {
+                RankFile.Add(5);
+            }
+            else if (char.ToLower(letters[0]) == 'g')
+            {
+                RankFile.Add(6);
+            }
+            else if (char.ToLower(letters[0]) == 'h')
+            {
+                RankFile.Add(7);
+            }
+            return RankFile;
+        }
+        public string RankFileToAlgebraicNotation(List<int> input)
+        {
+            string algnotation = "";
+            if (input[1] == 0)
+            {
+                algnotation = algnotation + "A";
+            }
+            else if (input[1] == 1)
+            {
+                algnotation = algnotation + "B";
+            }
+            else if (input[1] == 2)
+            {
+                algnotation = algnotation + "C";
+            }
+            else if (input[1] == 3)
+            {
+                algnotation = algnotation + "D";
+            }
+            else if (input[1] == 4)
+            {
+                algnotation = algnotation + "E";
+            }
+            else if (input[1] == 5)
+            {
+                algnotation = algnotation + "F";
+            }
+            else if (input[1] == 6)
+            {
+                algnotation = algnotation + "G";
+            }
+            else if (input[1] == 7)
+            {
+                algnotation = algnotation + "H";
+            }
+            algnotation = algnotation + (input[0] + 1).ToString();
+            return algnotation;
         }
         //This will allow us to setup custom piece configs in the future
         //Look into FEN setup process in the future
@@ -75,32 +158,32 @@ namespace ObjectChess.Models
                     }
                     if (PieceSetup[i,j] == "r")
                     {
-                        Rook rook = new Rook(board.BoardArray[i, j], pieceColor);
+                        Rook rook = new Rook(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = rook;
                     }
                     else if (PieceSetup[i, j] == "n")
                     {
-                        Knight knight = new Knight(board.BoardArray[i, j], pieceColor);
+                        Knight knight = new Knight(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = knight;
                     }
                     else if (PieceSetup[i, j] == "b")
                     {
-                        Bishop bishop = new Bishop(board.BoardArray[i, j], pieceColor);
+                        Bishop bishop = new Bishop(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = bishop;
                     }
                     else if (PieceSetup[i, j] == "q")
                     {
-                        Queen queen = new Queen(board.BoardArray[i, j], pieceColor);
+                        Queen queen = new Queen(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = queen;
                     }
                     else if (PieceSetup[i, j] == "k")
                     {
-                        King king = new King(board.BoardArray[i, j], pieceColor);
+                        King king = new King(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = king;
                     }
                     else if (PieceSetup[i, j] == "p")
                     {
-                        Pawn pawn= new Pawn(board.BoardArray[i, j], pieceColor);
+                        Pawn pawn= new Pawn(board.BoardArray[i, j], pieceColor, board);
                         board.BoardArray[i, j].Piece = pawn;
                     }
                 }
@@ -110,7 +193,12 @@ namespace ObjectChess.Models
         {
             int rank = 0;
             int file = 0;
-            foreach (var letter in fen)
+
+            //reverse fen
+            char[] charArray = fen.ToCharArray();
+            Array.Reverse(charArray);
+            string reversefen = new string(charArray);
+            foreach (var letter in reversefen)
             {
                 if (Char.IsNumber(letter))
                 {
@@ -139,73 +227,73 @@ namespace ObjectChess.Models
                 {
                     if (letter == 'k')
                     {
-                        King king = new King(board.BoardArray[rank, file], Color.Black);
+                        King king = new King(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = king;
                         file++;
                     }
                     else if (letter == 'q')
                     {
-                        Queen queen = new Queen(board.BoardArray[rank, file], Color.Black);
+                        Queen queen = new Queen(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = queen;
                         file++;
                     }
                     else if (letter == 'r')
                     {
-                        Rook rook = new Rook(board.BoardArray[rank, file], Color.Black);
+                        Rook rook = new Rook(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = rook;
                         file++;
                     }
                     else if (letter == 'n')
                     {
-                        Knight knight = new Knight(board.BoardArray[rank, file], Color.Black);
+                        Knight knight = new Knight(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = knight;
                         file++;
                     }
                     else if (letter == 'b')
                     {
-                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.Black);
+                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = bishop;
                         file++;
                     }
                     else if (letter == 'p')
                     {
-                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.Black);
+                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.Black, board);
                         board.BoardArray[rank, file].Piece = pawn;
                         file++;
                     }
                     if (letter == 'K')
                     {
-                        King king = new King(board.BoardArray[rank, file], Color.White);
+                        King king = new King(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = king;
                         file++;
                     }
                     else if (letter == 'Q')
                     {
-                        Queen queen = new Queen(board.BoardArray[rank, file], Color.White);
+                        Queen queen = new Queen(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = queen;
                         file++;
                     }
                     else if (letter == 'R')
                     {
-                        Rook rook = new Rook(board.BoardArray[rank, file], Color.White);
+                        Rook rook = new Rook(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = rook;
                         file++;
                     }
                     else if (letter == 'N')
                     {
-                        Knight knight = new Knight(board.BoardArray[rank, file], Color.White);
+                        Knight knight = new Knight(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = knight;
                         file++;
                     }
                     else if (letter == 'B')
                     {
-                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.White);
+                        Bishop bishop = new Bishop(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = bishop;
                         file++;
                     }
                     else if (letter == 'P')
                     {
-                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.White);
+                        Pawn pawn = new Pawn(board.BoardArray[rank, file], Color.White, board);
                         board.BoardArray[rank, file].Piece = pawn;
                         file++;
                     }

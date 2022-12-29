@@ -7,11 +7,15 @@ namespace ObjectChess.Models
 {
     public class Rook: Piece
     {
-        public Rook(Square square, Color color):base(square, color) 
+        public Rook(Square square, Color color, Board board):base(square, color, board) 
         {
             PieceType = PieceType.Rook;
         }
         public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        public override void CalcPossibleMoves()
         {
             throw new System.NotImplementedException();
         }

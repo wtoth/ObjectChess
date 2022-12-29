@@ -8,20 +8,17 @@ namespace ObjectChess.Models
 {
     public abstract class Piece
     {
-        Color Color { get; set; }
-        Square Square { get; set; }
+        public Color Color { get; set; }
+        public Square Square { get; set; }
         public PieceType PieceType { get; set; }
-        public List<List<int>> PossibleMoves
-        {
-            get => default;
-            set
-            {
-            }
-        }
-        public Piece(Square square, Color color)
+        public Board Board { get; set; }
+
+        public List<List<int>> PossibleMoves { get; set; }
+        public Piece(Square square, Color color, Board board)
         {
             this.Square = square;
             this.Color = color;
+            this.Board = board;
         }
         public void CanMove()
         {
@@ -35,10 +32,7 @@ namespace ObjectChess.Models
 
         public abstract void Move();
 
-        public void CalcPossibleMoves()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void CalcPossibleMoves();
 
         public void SetupPiece()
         {

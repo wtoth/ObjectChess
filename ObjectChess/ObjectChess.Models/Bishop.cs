@@ -7,11 +7,15 @@ namespace ObjectChess.Models
 {
     public class Bishop: Piece
     {
-        public Bishop(Square square, Color color) : base(square, color) 
+        public Bishop(Square square, Color color, Board board) : base(square, color, board) 
         {
             PieceType = PieceType.Bishop;
         }
         public override void Move()
+        {
+            throw new System.NotImplementedException();
+        }
+        public override void CalcPossibleMoves()
         {
             throw new System.NotImplementedException();
         }
