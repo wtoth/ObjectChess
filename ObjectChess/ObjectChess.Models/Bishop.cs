@@ -17,15 +17,89 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            throw new System.NotImplementedException();
+            {
+                List<List<int>> possiblemoves = new List<List<int>>();
+                List<List<int>> possiblediagonalmoves = DiagonalMove();
+                foreach (var move in possiblediagonalmoves)
+                {
+                    possiblemoves.Add(move);
+                }
+                this.PossibleMoves = possiblemoves;
+            }
         }
         public override char GetAlgNotation()
         {
             return 'B';
         }
-        private void DiagonalMove()
+        private List<List<int>> DiagonalMove()
         {
-            throw new System.NotImplementedException();
+            List<List<int>> possiblemoves = new List<List<int>>();
+            //Checks if there in either of the attacking positions for the pawn
+            int rank = Square.Position[0]+1;
+            int file = Square.Position[1]+1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank + 1;
+                file = file + 1;
+            }
+            rank = Square.Position[0]-1;
+            file = Square.Position[1]+1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank - 1;
+                file = file + 1;
+            }
+            rank = Square.Position[0] + 1;
+            file = Square.Position[1] - 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank + 1;
+                file = file - 1;
+            }
+            rank = Square.Position[0]-1;
+            file = Square.Position[1]-1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank - 1;
+                file = file - 1;
+            }
+            return possiblemoves;
         }
     }
 }
