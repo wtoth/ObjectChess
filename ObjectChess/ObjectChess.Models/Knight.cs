@@ -17,8 +17,8 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            List<List<int>> possibleknightmoves = KnightMove();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            List<PieceLocation> possibleknightmoves = KnightMove();
             foreach (var move in possibleknightmoves)
             {
                 possiblemoves.Add(move);
@@ -29,18 +29,18 @@ namespace ObjectChess.Models
         {
             return 'N';
         }
-        private List<List<int>> KnightMove()
+        private List<PieceLocation> KnightMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            int rank = Square.Position[0];
-            int file = Square.Position[1];
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            int rank = Square.Position.Rank;    
+            int file = Square.Position.File;
 
-            List<int> twouponeright = new List<int> { rank + 2, file + 1 }; 
-            if (twouponeright[0] <= 7 & twouponeright[1] <= 7)
+            PieceLocation twouponeright = new PieceLocation( rank + 2, file + 1 ); 
+            if (twouponeright.Rank <= 7 & twouponeright.File <= 7)
             {
-                if (Board.BoardArray[twouponeright[0], twouponeright[1]].IsPiece())
+                if (Board.BoardArray[twouponeright.Rank, twouponeright.File].IsPiece())
                 {
-                    if (Board.BoardArray[twouponeright[0], twouponeright[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[twouponeright.Rank, twouponeright.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(twouponeright);
                     }
@@ -50,12 +50,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(twouponeright);
                 }
             }
-            List<int> twouponeleft = new List<int> { rank + 2, file - 1 };
-            if (twouponeleft[0] <= 7 & twouponeleft[1] >= 0)
+            PieceLocation twouponeleft = new PieceLocation( rank + 2, file - 1 );
+            if (twouponeleft.Rank <= 7 & twouponeleft.File >= 0)
             {
-                if (Board.BoardArray[twouponeleft[0], twouponeleft[1]].IsPiece())
+                if (Board.BoardArray[twouponeleft.Rank, twouponeleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[twouponeleft[0], twouponeleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[twouponeleft.Rank, twouponeleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(twouponeleft);
                     }
@@ -65,12 +65,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(twouponeleft);
                 }
             }
-            List<int> twodownoneright = new List<int> { rank - 2, file + 1 };
-            if (twodownoneright[0] >= 0 & twodownoneright[1] <= 7)
+            PieceLocation twodownoneright = new PieceLocation(rank - 2, file + 1);
+            if (twodownoneright.Rank >= 0 & twodownoneright.File <= 7)
             {
-                if (Board.BoardArray[twodownoneright[0], twodownoneright[1]].IsPiece())
+                if (Board.BoardArray[twodownoneright.Rank, twodownoneright.File].IsPiece())
                 {
-                    if (Board.BoardArray[twodownoneright[0], twodownoneright[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[twodownoneright.Rank, twodownoneright.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(twodownoneright);
                     }
@@ -80,12 +80,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(twodownoneright);
                 }
             }
-            List<int> twodownoneleft = new List<int> { rank - 2, file - 1 };
-            if (twodownoneleft[0] >= 0 & twodownoneleft[1] >= 0)
+            PieceLocation twodownoneleft = new PieceLocation(rank - 2, file - 1);
+            if (twodownoneleft.Rank >= 0 & twodownoneleft.File >= 0)
             {
-                if (Board.BoardArray[twodownoneleft[0], twodownoneleft[1]].IsPiece())
+                if (Board.BoardArray[twodownoneleft.Rank, twodownoneleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[twodownoneleft[0], twodownoneleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[twodownoneleft.Rank, twodownoneleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(twodownoneleft);
                     }
@@ -95,12 +95,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(twodownoneleft);
                 }
             }
-            List<int> oneuptworight = new List<int> { rank + 1, file + 2 };
-            if (oneuptworight[0] <= 7 & oneuptworight[1] <= 7)
+            PieceLocation oneuptworight = new PieceLocation (rank + 1, file + 2);
+            if (oneuptworight.Rank <= 7 & oneuptworight.File <= 7)
             {
-                if (Board.BoardArray[oneuptworight[0], oneuptworight[1]].IsPiece())
+                if (Board.BoardArray[oneuptworight.Rank, oneuptworight.File].IsPiece())
                 {
-                    if (Board.BoardArray[oneuptworight[0], oneuptworight[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[oneuptworight.Rank, oneuptworight.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(oneuptworight);
                     }
@@ -111,12 +111,12 @@ namespace ObjectChess.Models
                 }
 
             }
-            List<int> onedowntworight = new List<int> { rank - 1, file + 2 };
-            if (onedowntworight[0] >= 0 & onedowntworight[1] <= 7)
+            PieceLocation onedowntworight = new PieceLocation (rank - 1, file + 2);
+            if (onedowntworight.Rank >= 0 & onedowntworight.File <= 7)
             {
-                if (Board.BoardArray[onedowntworight[0], onedowntworight[1]].IsPiece())
+                if (Board.BoardArray[onedowntworight.Rank, onedowntworight.File].IsPiece())
                 {
-                    if (Board.BoardArray[onedowntworight[0], onedowntworight[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[onedowntworight.Rank, onedowntworight.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(onedowntworight);
                     }
@@ -126,12 +126,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(onedowntworight);
                 }
             }
-            List<int> oneuptwoleft = new List<int> { rank + 1, file - 2 };
-            if (oneuptwoleft[0] <= 7 & oneuptwoleft[1] >= 0)
+            PieceLocation oneuptwoleft = new PieceLocation (rank + 1, file - 2);
+            if (oneuptwoleft.Rank <= 7 & oneuptwoleft.File >= 0)
             {
-                if (Board.BoardArray[oneuptwoleft[0], oneuptwoleft[1]].IsPiece())
+                if (Board.BoardArray[oneuptwoleft.Rank, oneuptwoleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[oneuptwoleft[0], oneuptwoleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[oneuptwoleft.Rank, oneuptwoleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(oneuptwoleft);
                     }
@@ -141,12 +141,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(oneuptwoleft);
                 }
             }
-            List<int> onedowntwoleft = new List<int> { rank - 1, file - 2 };
-            if (onedowntwoleft[0] >= 0 & onedowntwoleft[1] >= 0)
+            PieceLocation onedowntwoleft = new PieceLocation (rank - 1, file - 2);
+            if (onedowntwoleft.Rank >= 0 & onedowntwoleft.File >= 0)
             {
-                if (Board.BoardArray[onedowntwoleft[0], onedowntwoleft[1]].IsPiece())
+                if (Board.BoardArray[onedowntwoleft.Rank, onedowntwoleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[onedowntwoleft[0], onedowntwoleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[onedowntwoleft.Rank, onedowntwoleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(onedowntwoleft);
                     }

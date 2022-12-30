@@ -16,13 +16,16 @@ namespace ObjectChess.Models
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    List<int> position = new List<int> { i, j };
+                    PieceLocation position = new PieceLocation( i, j );
                     BoardArray[i, j] = new Square(position, false);
                 }
             }
 
         }
-
+        public Square GetSquare(PieceLocation RankFile)
+        {
+            return this.BoardArray[RankFile.Rank, RankFile.File];
+        }
         public bool IsCheckMate()
         {
             throw new System.NotImplementedException();

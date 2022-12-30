@@ -13,7 +13,7 @@ namespace ObjectChess.Models
         public PieceType PieceType { get; set; }
         public Board Board { get; set; }
 
-        public List<List<int>> PossibleMoves { get; set; }
+        public List<PieceLocation> PossibleMoves { get; set; }
         public Piece(Square square, Color color, Board board)
         {
             this.Square = square;

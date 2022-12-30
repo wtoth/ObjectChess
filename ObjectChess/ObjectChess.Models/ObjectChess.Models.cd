@@ -10,7 +10,7 @@
   <Class Name="ObjectChess.Models.Board">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAwAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAAAABAAAQAAAAAAAAAAAAAwAAAAAAAA=</HashCode>
       <FileName>Board.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -68,6 +68,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIABAAAAAAECAAAAAAAAAAAIAAAgAAAABAA=</HashCode>
       <FileName>Pawn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectChess.Models.PieceLocation">
+    <Position X="12.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PieceLocation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="ObjectChess.Models.PieceType">
