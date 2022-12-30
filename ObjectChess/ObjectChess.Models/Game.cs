@@ -43,12 +43,14 @@ namespace ObjectChess.Models
             return boardOutput;
         }
 
-        public List<List<int>> PossibleMoves(List<int> position, Board board)
+        public List<PieceLocation> PossibleMoves(PieceLocation rankfile, Board board)
         {
-            if (board.BoardArray[position[0], position[1]].IsPiece())
+            Square Square = board.GetSquare(rankfile);
+            Piece Piece = Square.Piece;
+            if (Square.IsPiece())
             {
-                board.BoardArray[position[0], position[1]].Piece.CalcPossibleMoves();
-                return board.BoardArray[position[0], position[1]].Piece.PossibleMoves;
+                Piece.CalcPossibleMoves();
+                return Piece.PossibleMoves;
             }
             else
             {
@@ -60,83 +62,83 @@ namespace ObjectChess.Models
             Board board = new Board();
             return board;
         }
-        public List<int> AlgebraicNotationToRankFile(string input)
+        public PieceLocation AlgebraicNotationToRankFile(string input)
         {
-            List<int> RankFile = new List<int>();
+            PieceLocation RankFile = new PieceLocation();
+            //List<int> RankFile = new List<int>();
             char[] letters = input.ToCharArray();
-            int rank = (int)Char.GetNumericValue(letters[1]) - 1;
-            RankFile.Add(rank);
+            RankFile.Rank = (int)Char.GetNumericValue(letters[1]) - 1;
 
             if (char.ToLower(letters[0]) == 'a')
             {
-                RankFile.Add(0);
+                RankFile.File = 0;
             }
             else if (char.ToLower(letters[0]) == 'b')
             {
-                RankFile.Add(1);
+                RankFile.File = 1;
             }
             else if (char.ToLower(letters[0]) == 'c')
             {
-                RankFile.Add(2);
+                RankFile.File = 2;
             }
             else if (char.ToLower(letters[0]) == 'd')
             {
-                RankFile.Add(3);
+                RankFile.File = 3;
             }
             else if (char.ToLower(letters[0]) == 'e')
             {
-                RankFile.Add(4);
+                RankFile.File = 4;
             }
             else if (char.ToLower(letters[0]) == 'f')
             {
-                RankFile.Add(5);
+                RankFile.File = 5;
             }
             else if (char.ToLower(letters[0]) == 'g')
             {
-                RankFile.Add(6);
+                RankFile.File = 6;
             }
             else if (char.ToLower(letters[0]) == 'h')
             {
-                RankFile.Add(7);
+                RankFile.File = 7;
             }
             return RankFile;
         }
-        public string RankFileToAlgebraicNotation(List<int> input)
+        public string RankFileToAlgebraicNotation(PieceLocation RankFile)
         {
             string algnotation = "";
-            if (input[1] == 0)
+            if (RankFile.File == 0)
             {
                 algnotation = algnotation + "A";
             }
-            else if (input[1] == 1)
+            else if (RankFile.File == 1)
             {
                 algnotation = algnotation + "B";
             }
-            else if (input[1] == 2)
+            else if (RankFile.File == 2)
             {
                 algnotation = algnotation + "C";
             }
-            else if (input[1] == 3)
+            else if (RankFile.File == 3)
             {
                 algnotation = algnotation + "D";
             }
-            else if (input[1] == 4)
+            else if (RankFile.File == 4)
             {
                 algnotation = algnotation + "E";
             }
-            else if (input[1] == 5)
+            else if (RankFile.File == 5)
             {
                 algnotation = algnotation + "F";
             }
-            else if (input[1] == 6)
+            else if (RankFile.File == 6)
             {
                 algnotation = algnotation + "G";
             }
-            else if (input[1] == 7)
+            else if (RankFile.File == 7)
             {
                 algnotation = algnotation + "H";
             }
-            algnotation = algnotation + (input[0] + 1).ToString();
+            algnotation = algnotation + (RankFile.Rank + 1).ToString();
             return algnotation;
         }
         //This will allow us to setup custom piece configs in the future

@@ -14,13 +14,13 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            List<List<int>> possiblediagonalmoves = DiagonalMove();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            List<PieceLocation> possiblediagonalmoves = DiagonalMove();
             foreach (var move in possiblediagonalmoves)
             {
                 possiblemoves.Add(move);
             }
-            List<List<int>> possibleverticalmoves = VerticalMove();
+            List<PieceLocation> possibleverticalmoves = VerticalMove();
             foreach (var move in possibleverticalmoves)
             {
                 possiblemoves.Add(move);
@@ -40,62 +40,103 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        private List<List<int>> DiagonalMove()
+        private List<PieceLocation> DiagonalMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
             //Checks if there in either of the attacking positions for the pawn
             if (this.Color == Color.White)
-            {   
-                if ((this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].IsPiece()) & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Piece.Color == Color.Black))
+            {
+                PieceLocation attackright = new PieceLocation((this.Square.Position.Rank + 1), (this.Square.Position.File + 1));
+                if (attackright.Rank <= 7 & attackright.File <= 7)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Position);
+                    Square attackrightsquare = Board.BoardArray[attackright.Rank, attackright.File];
+                    if (attackrightsquare.IsPiece())
+                    {
+                        if (attackrightsquare.Piece.Color == Color.Black)
+                        {
+                            possiblemoves.Add(attackright);
+                        }
+                    }
                 }
-                if (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Piece.Color == Color.Black))
+                PieceLocation attackleft = new PieceLocation((this.Square.Position.Rank + 1), (this.Square.Position.File - 1));
+                if (attackleft.Rank <= 7 & attackleft.File >= 0)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Position);
+                    Square attackleftsquare = Board.BoardArray[attackleft.Rank, attackleft.File];
+                    if (attackleftsquare.IsPiece())
+                    {
+                        if (attackleftsquare.Piece.Color == Color.Black)
+                        {
+                            possiblemoves.Add(attackleft);
+                        }
+                    }
                 }
+                
             }
             else 
             {
-                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] + 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] + 1)].Piece.Color == Color.White))
+                PieceLocation attackright = new PieceLocation((this.Square.Position.Rank - 1), (this.Square.Position.File + 1));
+                if (attackright.Rank >= 0 & attackright.File <= 7)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] + 1)].Position);
-                }
-                if (this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] - 1)].IsPiece() & (this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0] - 1)].Piece.Color == Color.White))
+                    Square attackrightsquare = Board.BoardArray[attackright.Rank, attackright.File];
+                    if (attackrightsquare.IsPiece())
+                    {
+                        if (attackrightsquare.Piece.Color == Color.White)
+                        {
+                            possiblemoves.Add(attackright);
+                        }
+                    }
+                }  
+                PieceLocation attackleft = new PieceLocation((this.Square.Position.Rank - 1), (this.Square.Position.File - 1));
+                if (attackleft.Rank >= 0 & attackleft.File >= 0)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0] - 1)].Position);
+                    Square attackleftsquare = Board.BoardArray[attackleft.Rank, attackleft.File];
+                    if (attackleftsquare.IsPiece())
+                    {
+                        if (attackleftsquare.Piece.Color == Color.White)
+                        {
+                            possiblemoves.Add(attackleft);
+                        }
+                    }
                 }
             }
             return possiblemoves;
         }
 
-        private List<List<int>> VerticalMove()
+        private List<PieceLocation> VerticalMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
             if (this.Color == Color.White)
             {
                 //Check if there is not piece in front of current piece
-                if (!this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0])].IsPiece())
+                PieceLocation moveforwardone = new PieceLocation(this.Square.Position.Rank + 1, this.Square.Position.File);
+                Square squareinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                if (!squareinfront.IsPiece() & moveforwardone.Rank <= 7)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0])].Position);
+                    possiblemoves.Add(moveforwardone);
                 }
                 //Check if there is not a piece in front of current piece for two moves and if the pawn is in the second rank
-                if ((!this.Board.BoardArray[(this.Square.Position[0] + 1), (this.Square.Position[0])].IsPiece()) & (!this.Board.BoardArray[(this.Square.Position[0] + 2), (this.Square.Position[0])].IsPiece()) & (this.Square.Position[0] == 1))
+                PieceLocation moveforwardtwo = new PieceLocation(this.Square.Position.Rank + 2, this.Square.Position.File);
+                Square squaretwoinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                if (!squaretwoinfront.IsPiece() & moveforwardtwo.Rank <= 7)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] + 2), (this.Square.Position[0])].Position);
+                    possiblemoves.Add(moveforwardtwo);
                 }
             }
             else
             {
                 //Check if there is not piece in front of current piece
-                if (!this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0])].IsPiece())
+                PieceLocation moveforwardone = new PieceLocation(this.Square.Position.Rank - 1, this.Square.Position.File);
+                Square squareinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                if (!squareinfront.IsPiece() & moveforwardone.Rank >= 0)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0])].Position);
+                    possiblemoves.Add(moveforwardone);
                 }
                 //Check if there is not a piece in front of current piece for two moves and if the pawn is in the second rank
-                if ((!this.Board.BoardArray[(this.Square.Position[0] - 1), (this.Square.Position[0])].IsPiece()) & (!this.Board.BoardArray[(this.Square.Position[0] - 2), (this.Square.Position[0])].IsPiece()) & (this.Square.Position[0] == 6))
+                PieceLocation moveforwardtwo = new PieceLocation(this.Square.Position.Rank - 2, this.Square.Position.File);
+                Square squaretwoinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                if (!squaretwoinfront.IsPiece() & moveforwardtwo.Rank >= 0)
                 {
-                    possiblemoves.Add(this.Board.BoardArray[(this.Square.Position[0] - 2), (this.Square.Position[0])].Position);
+                    possiblemoves.Add(moveforwardtwo);
                 }
             }
             return possiblemoves;

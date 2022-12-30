@@ -39,9 +39,9 @@ namespace ObjectChess
                         Interpreter.PrintOutput(Game.GetBoard(Board));
                         Console.WriteLine("White's turn");
                         Console.WriteLine("What Piece do you want to move?");
-                        List<int> pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
+                        PieceLocation pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
                         //Need to check if there is a piece there and if it is white
-                        List<List<int>> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
+                        List<PieceLocation> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
                         Console.WriteLine("Possible Moves for this piece are");
                         foreach (var position in possiblemoves)
                         {
@@ -61,9 +61,9 @@ namespace ObjectChess
                         Interpreter.PrintOutput(Game.GetBoard(Board));
                         Console.WriteLine("Black's turn");
                         Console.WriteLine("What Piece do you want to move?");
-                        List<int> pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
+                        PieceLocation pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
                         //Need to check if there is a piece there and if it is black
-                        List<List<int>> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
+                        List<PieceLocation> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
                         Console.WriteLine("Possible Moves for this piece are");
                         foreach (var position in possiblemoves)
                         {

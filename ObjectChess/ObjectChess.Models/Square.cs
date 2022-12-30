@@ -8,10 +8,10 @@ namespace ObjectChess.Models
 {
     public class Square
     {
-        public List<int> Position { get; set; }
+        public PieceLocation Position { get; set; }
         public Piece Piece { get; set; }
         public bool Attacked { get; set; }
-        public Square(List<int> position, bool attacked = false) 
+        public Square(PieceLocation position, bool attacked = false) 
         { 
             this.Position = position;
             this.Attacked= attacked;

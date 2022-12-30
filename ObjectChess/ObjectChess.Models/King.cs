@@ -17,18 +17,18 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            List<List<int>> possiblediagonalmoves = DiagonalMove();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            List<PieceLocation> possiblediagonalmoves = DiagonalMove();
             foreach (var move in possiblediagonalmoves)
             {
                 possiblemoves.Add(move);
             }
-            List<List<int>> possibleverticalmoves = VerticalMove();
+            List<PieceLocation> possibleverticalmoves = VerticalMove();
             foreach (var move in possibleverticalmoves)
             {
                 possiblemoves.Add(move);
             }
-            List<List<int>> possiblehorizontalmoves = HorizontalMove();
+            List<PieceLocation> possiblehorizontalmoves = HorizontalMove();
             foreach (var move in possiblehorizontalmoves)
             {
                 possiblemoves.Add(move);
@@ -55,18 +55,18 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        private List<List<int>> DiagonalMove()
+        private List<PieceLocation> DiagonalMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            int rank = Square.Position[0];
-            int file = Square.Position[1];
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            int rank = Square.Position.Rank;
+            int file = Square.Position.File;
 
-            List<int> upright = new List<int> { rank + 1, file + 1 };
-            if (upright[0] <= 7 & upright[1] <= 7)
+            PieceLocation upright = new PieceLocation(rank + 1, file + 1);
+            if (upright.Rank <= 7 & upright.File <= 7)
             {
-                if (Board.BoardArray[upright[0], upright[1]].IsPiece())
+                if (Board.BoardArray[upright.Rank, upright.File].IsPiece())
                 {
-                    if (Board.BoardArray[upright[0], upright[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[upright.Rank, upright.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(upright);
                     }
@@ -76,12 +76,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(upright);
                 }
             }
-            List<int> upleft = new List<int> { rank + 1, file - 1};
-            if (upleft[0] <= 7 & upleft[1] >= 0)
+            PieceLocation upleft = new PieceLocation(rank + 1, file - 1);
+            if (upleft.Rank <= 7 & upleft.File >= 0)
             {
-                if (Board.BoardArray[upleft[0], upleft[1]].IsPiece())
+                if (Board.BoardArray[upleft.Rank, upleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[upleft[0], upleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[upleft.Rank, upleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(upleft);
                     }
@@ -91,12 +91,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(upleft);
                 }
             }
-            List<int> downright = new List<int> { rank - 1, file + 1 };
-            if (downright[0] >= 0 & downright[1] <= 7)
+            PieceLocation downright = new PieceLocation(rank - 1, file + 1 );
+            if (downright.Rank >= 0 & downright.File <= 7)
             {
-                if (Board.BoardArray[downright[0], downright[1]].IsPiece())
+                if (Board.BoardArray[downright.Rank, downright.File].IsPiece())
                 {
-                    if (Board.BoardArray[downright[0], downright[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[downright.Rank, downright.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(downright);
                     }
@@ -106,12 +106,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(downright);
                 }
             }
-            List<int> downleft = new List<int> { rank - 1, file - 1 };
-            if (downleft[0] >= 0 & downleft[1] >= 0)
+            PieceLocation downleft = new PieceLocation( rank - 1, file - 1 );
+            if (downleft.Rank >= 0 & downleft.File >= 0)
             {
-                if (Board.BoardArray[downleft[0], downleft[1]].IsPiece())
+                if (Board.BoardArray[downleft.Rank, downleft.File].IsPiece())
                 {
-                    if (Board.BoardArray[downleft[0], downleft[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[downleft.Rank, downleft.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(downleft);
                     }
@@ -124,18 +124,18 @@ namespace ObjectChess.Models
             return possiblemoves;
         }
 
-        private List<List<int>> HorizontalMove()
+        private List<PieceLocation> HorizontalMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            int rank = Square.Position[0];
-            int file = Square.Position[1];
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            int rank = Square.Position.Rank;
+            int file = Square.Position.File;
 
-            List<int> right = new List<int> { rank, file + 1 };
-            if (right[1] <= 7)
+            PieceLocation right = new PieceLocation( rank, file + 1 );
+            if (right.File <= 7)
             {
-                if (Board.BoardArray[right[0], right[1]].IsPiece())
+                if (Board.BoardArray[right.Rank, right.File].IsPiece())
                 {
-                    if (Board.BoardArray[right[0], right[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[right.Rank, right.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(right);
                     }
@@ -145,12 +145,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(right);
                 }
             }
-            List<int> left = new List<int> { rank, file - 1 };
-            if (left[1] >= 0)
+            PieceLocation left = new PieceLocation( rank, file - 1 );
+            if (left.File >= 0)
             {
-                if (Board.BoardArray[left[0], left[1]].IsPiece())
+                if (Board.BoardArray[left.Rank, left.File].IsPiece())
                 {
-                    if (Board.BoardArray[left[0], left[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[left.Rank, left.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(left);
                     }
@@ -163,18 +163,18 @@ namespace ObjectChess.Models
             return possiblemoves;
         }
 
-        public List<List<int>> VerticalMove()
+        public List<PieceLocation> VerticalMove()
         {
-            List<List<int>> possiblemoves = new List<List<int>>();
-            int rank = Square.Position[0];
-            int file = Square.Position[1];
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            int rank = Square.Position.Rank;
+            int file = Square.Position.File;
 
-            List<int> up = new List<int> { rank+1, file };
-            if (up[0] <= 7)
+            PieceLocation up = new PieceLocation(rank + 1, file);
+            if (up.Rank <= 7)
             {
-                if (Board.BoardArray[up[0], up[1]].IsPiece())
+                if (Board.BoardArray[up.Rank, up.File].IsPiece())
                 {
-                    if (Board.BoardArray[up[0], up[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[up.Rank, up.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(up);
                     }
@@ -184,12 +184,12 @@ namespace ObjectChess.Models
                     possiblemoves.Add(up);
                 }
             }
-            List<int> down = new List<int> { rank-1, file };
-            if (down[0] >= 0)
+            PieceLocation down = new PieceLocation( rank-1, file );
+            if (down.Rank >= 0)
             {
-                if (Board.BoardArray[down[0], down[1]].IsPiece())
+                if (Board.BoardArray[down.Rank, down.File].IsPiece())
                 {
-                    if (Board.BoardArray[down[0], down[1]].Piece.Color != this.Color)
+                    if (Board.BoardArray[down.Rank, down.File].Piece.Color != this.Color)
                     {
                         possiblemoves.Add(down);
                     }
