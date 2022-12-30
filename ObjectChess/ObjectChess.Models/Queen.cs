@@ -182,22 +182,22 @@ namespace ObjectChess.Models
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
             //Checks if there in either of the attacking positions for the pawn
-            int rank = Square.Position.Rank;
-            int file = Square.Position.File + 1;
+            var rank = Square.Position.Rank;
+            var file = Square.Position.File + 1;
             while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
                     if (Board.BoardArray[rank, file].Piece.Color != this.Color)
                     {
-                        PieceLocation position = new PieceLocation(rank, file);
+                        var position = new PieceLocation(rank, file);
                         possiblemoves.Add(position);
                     }
                     break;
                 }
                 else
                 {
-                    PieceLocation position = new PieceLocation(rank, file);
+                    var position = new PieceLocation(rank, file);
                     possiblemoves.Add(position);
                 }
                 file = file + 1;
@@ -210,14 +210,14 @@ namespace ObjectChess.Models
                 {
                     if (Board.BoardArray[rank, file].Piece.Color != this.Color)
                     {
-                        PieceLocation position = new PieceLocation(rank, file);
+                        var position = new PieceLocation(rank, file);
                         possiblemoves.Add(position);
                     }
                     break;
                 }
                 else
                 {
-                    PieceLocation position = new PieceLocation(rank, file);
+                    var position = new PieceLocation(rank, file);
                     possiblemoves.Add(position);
                 }
                 file = file - 1;
