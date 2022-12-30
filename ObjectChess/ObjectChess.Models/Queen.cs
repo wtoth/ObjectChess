@@ -16,25 +16,213 @@ namespace ObjectChess.Models
         }
         public override void CalcPossibleMoves()
         {
-            throw new System.NotImplementedException();
+            List<List<int>> possiblemoves = new List<List<int>>();
+            List<List<int>> possibleverticalmoves = VerticalMove();
+            foreach (var move in possibleverticalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            List<List<int>> possiblehorizontalmoves = HorizontalMove();
+            foreach (var move in possiblehorizontalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            List<List<int>> possiblediagonalmoves = DiagonalMove();
+            foreach (var move in possiblediagonalmoves)
+            {
+                possiblemoves.Add(move);
+            }
+            this.PossibleMoves = possiblemoves;
         }
         public override char GetAlgNotation()
         {
             return 'Q';
         }
-        private void DiagonalMove()
+        private List<List<int>> DiagonalMove()
         {
-            throw new System.NotImplementedException();
+            List<List<int>> possiblemoves = new List<List<int>>();
+            //Checks if there in either of the attacking positions for the pawn
+            int rank = Square.Position[0] + 1;
+            int file = Square.Position[1] + 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank + 1;
+                file = file + 1;
+            }
+            rank = Square.Position[0] - 1;
+            file = Square.Position[1] + 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank - 1;
+                file = file + 1;
+            }
+            rank = Square.Position[0] + 1;
+            file = Square.Position[1] - 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank + 1;
+                file = file - 1;
+            }
+            rank = Square.Position[0] - 1;
+            file = Square.Position[1] - 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                rank = rank - 1;
+                file = file - 1;
+            }
+            return possiblemoves;
         }
 
-        private void HorizontalMove()
+        private List<List<int>> HorizontalMove()
         {
-            throw new System.NotImplementedException();
+            {
+                List<List<int>> possiblemoves = new List<List<int>>();
+                //Checks if there in either of the attacking positions for the pawn
+                int rank = Square.Position[0] + 1;
+                int file = Square.Position[1];
+                while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+                {
+                    if (Board.BoardArray[rank, file].IsPiece())
+                    {
+                        if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                        {
+                            List<int> position = new List<int> { rank, file };
+                            possiblemoves.Add(position);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    rank = rank + 1;
+                }
+                rank = Square.Position[0] - 1;
+                file = Square.Position[1];
+                while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+                {
+                    if (Board.BoardArray[rank, file].IsPiece())
+                    {
+                        if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                        {
+                            List<int> position = new List<int> { rank, file };
+                            possiblemoves.Add(position);
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    rank = rank - 1;
+                }
+                return possiblemoves;
+            }
         }
 
-        private void VerticalMove()
+        private List<List<int>> VerticalMove()
         {
-            throw new System.NotImplementedException();
+            List<List<int>> possiblemoves = new List<List<int>>();
+            //Checks if there in either of the attacking positions for the pawn
+            int rank = Square.Position[0];
+            int file = Square.Position[1] + 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                file = file + 1;
+            }
+            rank = Square.Position[0];
+            file = Square.Position[1] - 1;
+            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            {
+                if (Board.BoardArray[rank, file].IsPiece())
+                {
+                    if (Board.BoardArray[rank, file].Piece.Color != this.Color)
+                    {
+                        List<int> position = new List<int> { rank, file };
+                        possiblemoves.Add(position);
+                    }
+                    break;
+                }
+                else
+                {
+                    List<int> position = new List<int> { rank, file };
+                    possiblemoves.Add(position);
+                }
+                file = file - 1;
+            }
+            return possiblemoves;
         }
     }
 }
