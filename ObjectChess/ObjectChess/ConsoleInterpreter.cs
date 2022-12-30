@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectChess.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace ObjectChess.ConsoleApp
                 i++;
             }
             Console.WriteLine(output);
+        }
+        public void PrintPossibleMoves(List<List<int>> PossibleMoves)
+        {
+            Console.WriteLine("Possible Moves for this piece are");
+            foreach (var position in PossibleMoves)
+            {
+                //Console.WriteLine(Game.RankFileToAlgebraicNotation(position));
+            }
         }
     }
 }

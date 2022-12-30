@@ -42,6 +42,7 @@ namespace ObjectChess
                         List<int> pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
                         //Need to check if there is a piece there and if it is white
                         List<List<int>> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
+                        Console.WriteLine("Possible Moves for this piece are");
                         foreach (var position in possiblemoves)
                         {
                             Console.WriteLine(Game.RankFileToAlgebraicNotation(position));
@@ -62,7 +63,12 @@ namespace ObjectChess
                         Console.WriteLine("What Piece do you want to move?");
                         List<int> pieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
                         //Need to check if there is a piece there and if it is black
-                        //Game.PossibleMoves(pieceToMove);
+                        List<List<int>> possiblemoves = Game.PossibleMoves(pieceToMove, Board);
+                        Console.WriteLine("Possible Moves for this piece are");
+                        foreach (var position in possiblemoves)
+                        {
+                            Console.WriteLine(Game.RankFileToAlgebraicNotation(position));
+                        }
                         Console.WriteLine("Where do you want to move it to");
                         string pieceDestination = Console.ReadLine();
                         //MovePiece();
