@@ -16,7 +16,7 @@ namespace ObjectChess.Models
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    PieceLocation position = new PieceLocation( i, j );
+                    PieceLocation position = new PieceLocation(i, j);
                     BoardArray[i, j] = new Square(position, false);
                 }
             }

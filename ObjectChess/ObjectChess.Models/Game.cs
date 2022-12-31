@@ -10,13 +10,38 @@ namespace ObjectChess.Models
 {
     public class Game
     {
-        public int CurrTurn = (int)Color.White;
+        public Color CurrentTurn = Color.White;
         public List<Piece> Captured { get; set; }
         public void Move()
         {
             throw new System.NotImplementedException();
         }
-
+        public bool IsMoveablePiece(Board Board, PieceLocation PieceLocation, Color PlayersColor, List<PieceLocation> PossibleMoves)
+        {
+            Square MovementSquare = Board.BoardArray[PieceLocation.Rank, PieceLocation.File];
+            if (MovementSquare.IsPiece())
+            {
+                if (MovementSquare.Piece.Color == PlayersColor)
+                {
+                    if (PossibleMoves != null)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool IsPieceDestinationValid(PieceLocation PieceDestination, List<PieceLocation> PossibleMoves)
+        {
+            if (PossibleMoves.Any(x=> x.Rank == PieceDestination.Rank && x.File == PieceDestination.File))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public void IsCheck()
         {
             throw new System.NotImplementedException();
