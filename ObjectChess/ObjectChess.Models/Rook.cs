@@ -11,10 +11,6 @@ namespace ObjectChess.Models
         {
             PieceType = PieceType.Rook;
         }
-        public override void Move()
-        {
-            throw new System.NotImplementedException();
-        }
         public override void CalcPossibleMoves()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();

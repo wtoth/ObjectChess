@@ -42,7 +42,7 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
-                        //MovePiece();
+                        Game.MovePiece(Board, PieceToMove, Game.AlgebraicNotationToRankFile(PieceDestination));
                         turnComplete = true;
                     }
                     Game.CurrentTurn = Color.Black;
@@ -74,7 +74,7 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
-                        //MovePiece();
+                        Game.MovePiece(Board, PieceToMove, Game.AlgebraicNotationToRankFile(PieceDestination));
                         turnComplete = true;
                     }
                     Game.CurrentTurn = Color.White;

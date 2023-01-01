@@ -12,9 +12,22 @@ namespace ObjectChess.Models
     {
         public Color CurrentTurn = Color.White;
         public List<Piece> Captured { get; set; }
-        public void Move()
+        public Game() 
+        { 
+            Captured= new List<Piece>();
+        }
+        public void MovePiece(Board Board, PieceLocation PieceToMove, PieceLocation PieceDestination)
         {
-            throw new System.NotImplementedException();
+            Square CurrentSquare = Board.BoardArray[PieceToMove.Rank, PieceToMove.File];
+            Piece CurrentPiece = Board.BoardArray[PieceToMove.Rank, PieceToMove.File].Piece;
+            Square DestinationSquare = Board.BoardArray[PieceDestination.Rank, PieceDestination.File];
+            Piece AttackedPiece = null;
+            if (DestinationSquare.Piece != null)
+            {
+                AttackedPiece = DestinationSquare.Piece;
+            }
+
+            CurrentPiece.Move(CurrentSquare, DestinationSquare, AttackedPiece, this.Captured);
         }
         public bool IsMoveablePiece(Board Board, PieceLocation PieceLocation, Color PlayersColor, List<PieceLocation> PossibleMoves)
         {

@@ -27,10 +27,6 @@ namespace ObjectChess.Models
             }
             this.PossibleMoves = possiblemoves;
         }
-        public override void Move()
-        {
-            throw new System.NotImplementedException();
-        }
         public override char GetAlgNotation()
         {
             return 'P';

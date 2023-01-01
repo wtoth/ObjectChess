@@ -30,7 +30,22 @@ namespace ObjectChess.Models
             throw new System.NotImplementedException();
         }
 
-        public abstract void Move();
+        public virtual void Move(Square CurrentSquare, Square DestinationSquare, Piece AttackedPiece, List<Piece> Captured)
+        {
+            if (AttackedPiece != null)
+            {
+                Captured.Add(AttackedPiece);
+                this.Square = DestinationSquare;
+                DestinationSquare.Piece = this;
+                CurrentSquare.Piece = null;
+            }
+            else
+            {
+                this.Square = DestinationSquare;
+                DestinationSquare.Piece = this;
+                CurrentSquare.Piece = null;
+            }
+        }
 
         public abstract void CalcPossibleMoves();
 

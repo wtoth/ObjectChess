@@ -10,10 +10,6 @@ namespace ObjectChess.Models
         public Queen(Square square, Color color, Board board) : base(square, color, board) {
             this.PieceType = PieceType.Queen;
         }
-        public override void Move()
-        {
-            throw new System.NotImplementedException();
-        }
         public override void CalcPossibleMoves()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
