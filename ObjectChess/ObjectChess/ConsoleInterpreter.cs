@@ -14,15 +14,21 @@ namespace ObjectChess.ConsoleApp
         {
             string output = "";
             int i = 1;
+            int j = 1;
+            output = output + j.ToString() + " ";
+            j++;
             foreach (var piece in boardOutput)
             {
                 output = output + piece + " ";
                 if (i%8 == 0)
                 {
                     output = output + "\n";
+                    output = output + j.ToString() + " ";
+                    j++;
                 }
                 i++;
             }
+            Console.WriteLine("\n  A B C D E F G H");
             Console.WriteLine(output);
         }
         public void PrintPossibleMoves(List<List<int>> PossibleMoves)

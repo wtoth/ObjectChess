@@ -64,23 +64,6 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
-        public List<string> GetBoard(Board board)
-        {
-            var boardOutput = new List<string>();
-            foreach (var square in board.BoardArray)
-            {
-                if (square.Piece != null)
-                {
-                    var type = square.Piece.GetAlgNotation();
-                    boardOutput.Add(type.ToString());
-                } else
-                {
-                    boardOutput.Add("-");
-                }
-            }
-            return boardOutput;
-        }
-
         public List<PieceLocation> PossibleMoves(PieceLocation rankfile, Board board)
         {
             Square Square = board.GetSquare(rankfile);
@@ -340,5 +323,45 @@ namespace ObjectChess.Models
                 }
             }
         }
+        public List<string> GetBoard(Board board)
+        {
+            var boardOutput = new List<string>();
+            foreach (var square in board.BoardArray)
+            {
+                if (square.Piece != null)
+                {
+                    var type = square.Piece.GetAlgNotation();
+                    boardOutput.Add(type.ToString());
+                }
+                else
+                {
+                    boardOutput.Add("-");
+                }
+            }
+            return boardOutput;
+        }
+        //public string GetBoardFen(Board board)
+        //{
+        //    string boardOutput;
+        //    int emptySquares = 0;
+        //    foreach (var square in board.BoardArray)
+        //    {
+        //        if (square.Piece != null)
+        //        {
+        //            var type = square.Piece.GetAlgNotation();
+        //            if (square.Piece.Color == Color.White)
+        //            {
+
+        //            }
+        //        }
+        //        else
+        //        {
+        //            emptySquares++;
+        //        }
+        //    }
+
+
+        //    return boardOutput;
+        //}
     }
 }
