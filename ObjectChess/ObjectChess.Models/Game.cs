@@ -214,20 +214,15 @@ namespace ObjectChess.Models
         }
         public void SetupPieces(Board board, string fen)
         {
-            int rank = 0;
+            int rank = 7;
             int file = 0;
-
-            //reverse fen
-            char[] charArray = fen.ToCharArray();
-            Array.Reverse(charArray);
-            string reversefen = new string(charArray);
-            foreach (var letter in reversefen)
+            foreach (var letter in fen)
             {
                 if (Char.IsNumber(letter))
                 {
                     if (letter == '8')
                     {
-                        if (rank == 7)
+                        if (rank == 0)
                         {
                             break;
                         }
@@ -243,7 +238,7 @@ namespace ObjectChess.Models
                 }
                 else if (letter == '/')
                 {
-                    rank++;
+                    rank--;
                     file = 0;
                 }
                 else
@@ -340,28 +335,52 @@ namespace ObjectChess.Models
             }
             return boardOutput;
         }
-        //public string GetBoardFen(Board board)
-        //{
-        //    string boardOutput;
-        //    int emptySquares = 0;
-        //    foreach (var square in board.BoardArray)
-        //    {
-        //        if (square.Piece != null)
-        //        {
-        //            var type = square.Piece.GetAlgNotation();
-        //            if (square.Piece.Color == Color.White)
-        //            {
-
-        //            }
-        //        }
-        //        else
-        //        {
-        //            emptySquares++;
-        //        }
-        //    }
-
-
-        //    return boardOutput;
-        //}
+        public List<string> GetBoardFen(Board board)
+        {
+            List<string> boardOutput = new List<string>();
+            int emptySquares = 0;
+            for (int i = 7; i >= 0; i--) 
+            {
+                for (int j = 0; j <= 7; j++)
+                {
+                    Square CurrentSquare = board.BoardArray[i, j];
+                    if (CurrentSquare.Piece != null)
+                    {
+                        if (emptySquares != 0)
+                        {
+                            boardOutput.Add(emptySquares.ToString());
+                            emptySquares = 0;
+                        }
+                        var type = CurrentSquare.Piece.GetAlgNotation();
+                        if (CurrentSquare.Piece.Color == Color.Black)
+                        {
+                            boardOutput.Add(Char.ToLower(type).ToString());
+                        }
+                        else
+                        {
+                            boardOutput.Add(type.ToString());
+                        }
+                    }
+                    else
+                    {
+                        emptySquares++;
+                    }
+                    if (j == 7)
+                    {
+                        if (emptySquares != 0)
+                        {
+                            boardOutput.Add(emptySquares.ToString());
+                            emptySquares = 0;
+                        }
+                        if (i != 0)
+                        {
+                            boardOutput.Add("/");
+                        }
+                    }
+                }
+                
+            }
+            return boardOutput;
+        }
     }
 }

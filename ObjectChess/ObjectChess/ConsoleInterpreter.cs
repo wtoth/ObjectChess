@@ -22,14 +22,43 @@ namespace ObjectChess.ConsoleApp
                 output = output + piece + " ";
                 if (i%8 == 0)
                 {
-                    output = output + "\n";
-                    output = output + j.ToString() + " ";
+                    if (j < 9)
+                    {
+                        output = output + "\n";
+                        output = output + j.ToString() + " "; 
+                    }
                     j++;
                 }
                 i++;
             }
-            Console.WriteLine("\n  A B C D E F G H");
             Console.WriteLine(output);
+            Console.WriteLine("  A B C D E F G H");
+        }
+        //Doesn't work yet
+        public void PrintWhiteOutput(List<string> boardOutput)
+        {
+            string output = "";
+            int i = 1;
+            int j = 8;
+            output = output + j.ToString() + " ";
+            j--;
+            boardOutput.Reverse();
+            foreach (var piece in boardOutput)
+            {
+                output = output + piece + " ";
+                if (i % 8 == 0)
+                {
+                    output = output + "\n";
+                    if (j > 0)
+                    {
+                        output = output + j.ToString() + " ";
+                    }
+                    j--;
+                }
+                i++;
+            }
+            Console.WriteLine(output);
+            Console.WriteLine("\n  A B C D E F G H");
         }
         public void PrintPossibleMoves(List<List<int>> PossibleMoves)
         {

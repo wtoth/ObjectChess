@@ -24,8 +24,14 @@ namespace ObjectChess
                                                  {"p","p","p","p","p","p","p","p"},
                                                  {"r","n","b","q","k","b","n","r"}};
             Board Board = Game.SetupBoard();
-            Game.SetupPieces(Board, OtherOtherFenSetup);
+            Game.SetupPieces(Board, OtherFenSetup);
 
+            Console.WriteLine();
+            foreach (var thing in Game.GetBoardFen(Board))
+            {
+                Console.Write(thing);
+            }
+            Console.WriteLine();
             ConsolePlayer.GameLoop(Game, Board, Interpreter);
         }
     }
