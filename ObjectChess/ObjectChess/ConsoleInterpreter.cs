@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ObjectChess.ConsoleApp
 {
@@ -60,6 +61,38 @@ namespace ObjectChess.ConsoleApp
             Console.WriteLine(output);
             Console.WriteLine("\n  A B C D E F G H");
         }
+        public void PrintFenOutput(List<string> Fen)
+        {
+            string output = "";
+            int Rank = 8;
+            output = output + Rank.ToString() + " ";
+            Rank--;
+            foreach (var piece in Fen)
+            {
+                char charPiece = piece.ToCharArray()[0];
+                if (char.IsLetter(charPiece))
+                {
+                    output = output + char.ToUpper(charPiece).ToString() + " ";
+                }
+                else if (charPiece == '/')
+                {
+                    output = output + "\n";
+                    if (Rank > 0)
+                    {
+                        output = output + Rank.ToString() + " ";
+                        Rank--;
+                    }
+                }
+                else if (char.IsNumber(charPiece))
+                {
+                    string spaces = String.Concat(Enumerable.Repeat("- ", (int)char.GetNumericValue(charPiece)));
+                    output = output + spaces;
+                }
+            }
+            Console.WriteLine(output);
+            Console.WriteLine("  A B C D E F G H");
+        }
+
         public void PrintPossibleMoves(List<List<int>> PossibleMoves)
         {
             Console.WriteLine("Possible Moves for this piece are");

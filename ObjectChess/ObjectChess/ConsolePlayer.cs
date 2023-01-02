@@ -19,7 +19,8 @@ namespace ObjectChess.ConsoleApp
                 {
                     while (!turnComplete)
                     {
-                        Interpreter.PrintOutput(Game.GetBoard(Board));
+                        //Interpreter.PrintOutput(Game.GetBoard(Board));
+                        Interpreter.PrintFenOutput(Game.GetBoardFen(Board));
                         Console.WriteLine("White's turn");
                         Console.WriteLine("What Piece do you want to move?");
                         PieceLocation PieceToMove = Game.AlgebraicNotationToRankFile(Console.ReadLine());
