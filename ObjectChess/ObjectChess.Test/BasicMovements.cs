@@ -1,5 +1,6 @@
 using ObjectChess.Models;
 using ObjectChess.ConsoleApp;
+using ObjectChess.CustomExtensions;
 
 namespace ObjectChess.Test
 {
@@ -24,7 +25,7 @@ namespace ObjectChess.Test
                                                   {"p","p","p","p","p","p","p","p"},
                                                   {"r","n","b","q","k","b","n","r"}};
             PawnGame.SetupPieces(Board, PieceSetup);
-            //PawnGame.Move("A2","A3");
+            PawnGame.MovePiece(Board, "A2".AlgebraicNotationToRankFile(),"A3".AlgebraicNotationToRankFile());
 
             Game CorrectPawnGame = new Game();
             Board CorrectBoard = CorrectPawnGame.SetupBoard();
@@ -54,9 +55,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("H1", "G1");
-            //Game.Move("H2","F2");
-            //Game.Move("H3","E3");
+            Game.MovePiece(Board, "H1".AlgebraicNotationToRankFile(), "G1".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "H2".AlgebraicNotationToRankFile(), "F2".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "H3".AlgebraicNotationToRankFile(), "E3".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -86,9 +87,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("A1", "B1");
-            //Game.Move("A2","C2");
-            //Game.Move("A3","D3");
+            Game.MovePiece(Board, "A1".AlgebraicNotationToRankFile(), "B1".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "A2".AlgebraicNotationToRankFile(), "C2".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "A3".AlgebraicNotationToRankFile(), "D3".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -110,7 +111,7 @@ namespace ObjectChess.Test
             Game Game = new Game();
             Board Board = Game.SetupBoard();
             string[,] PieceSetup = new string[,] {{"k","q","r","","","","",""},
-                                                  {"","","","","p","","",""},
+                                                  {"","","","p","","","",""},
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},
@@ -118,10 +119,10 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("A1", "A2");
-            //Game.Move("B1","B3");
-            //Game.Move("C1","C8");
-            //Game.Move("D2","D4");
+            Game.MovePiece(Board, "A1".AlgebraicNotationToRankFile(), "A2".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "B1".AlgebraicNotationToRankFile(), "B3".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "C1".AlgebraicNotationToRankFile(), "C8".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "D2".AlgebraicNotationToRankFile(), "D4".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -148,13 +149,13 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""},
-                                                  {"","","","","p","","",""},
+                                                  {"","","","p","","","",""},
                                                   {"k","q","r","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("A8", "A7");
-            //Game.Move("B8","B6");
-            //Game.Move("C8","C1");
-            //Game.Move("D7","D5");
+            Game.MovePiece(Board, "A8".AlgebraicNotationToRankFile(), "A7".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "B8".AlgebraicNotationToRankFile(), "B6".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "C8".AlgebraicNotationToRankFile(), "C1".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "D7".AlgebraicNotationToRankFile(), "D5".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -162,7 +163,7 @@ namespace ObjectChess.Test
                                                          {"","","","","","","",""},
                                                          {"","","","","","","",""},
                                                          {"","","","","","","",""},
-                                                         {"","","","","p","","",""},
+                                                         {"","","","p","","","",""},
                                                          {"","q","","","","","",""},
                                                          {"k","","","","","","",""},
                                                          {"","","","","","","",""}};
@@ -184,9 +185,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","k","q","b"}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("H8", "A1");
-            //Game.Move("G8","A2");
-            //Game.Move("F8","E7");
+            Game.MovePiece(Board, "H8".AlgebraicNotationToRankFile(), "A1".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "G8".AlgebraicNotationToRankFile(), "A2".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "F8".AlgebraicNotationToRankFile(), "E7".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -216,9 +217,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"b","q","k","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("A8", "H1");
-            //Game.Move("B8","H2");
-            //Game.Move("C8","D7");
+            Game.MovePiece(Board, "A8".AlgebraicNotationToRankFile(), "H1".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "B8".AlgebraicNotationToRankFile(), "H2".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "C8".AlgebraicNotationToRankFile(), "D7".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -248,9 +249,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("H1", "A8");
-            //Game.Move("H2","B8");
-            //Game.Move("H3","G4");
+            Game.MovePiece(Board, "H1".AlgebraicNotationToRankFile(), "A8".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "H2".AlgebraicNotationToRankFile(), "B8".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "H3".AlgebraicNotationToRankFile(), "G4".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -280,9 +281,9 @@ namespace ObjectChess.Test
                                                   {"","","","","","","",""},
                                                   {"","","","","","","",""}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("A1", "H8");
-            //Game.Move("A2","G8");
-            //Game.Move("A3","B4");
+            Game.MovePiece(Board, "A1".AlgebraicNotationToRankFile(), "H8".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "A2".AlgebraicNotationToRankFile(), "G8".AlgebraicNotationToRankFile());
+            Game.MovePiece(Board, "A3".AlgebraicNotationToRankFile(), "B4".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -312,7 +313,7 @@ namespace ObjectChess.Test
                                                  {"p","p","p","p","p","p","p","p"},
                                                  {"r","n","b","q","k","b","n","r"}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("B7", "C5");
+            Game.MovePiece(Board, "B8".AlgebraicNotationToRankFile(), "C6".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -342,7 +343,7 @@ namespace ObjectChess.Test
                                                  {"p","p","p","p","p","p","p","p"},
                                                  {"r","n","b","q","k","b","n","r"}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("G7", "F5");
+            Game.MovePiece(Board, "G8".AlgebraicNotationToRankFile(), "F6".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -372,7 +373,7 @@ namespace ObjectChess.Test
                                                  {"p","p","p","p","p","p","p","p"},
                                                  {"r","n","b","q","k","b","n","r"}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("B1", "C3");
+            Game.MovePiece(Board, "B1".AlgebraicNotationToRankFile(), "C3".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
@@ -402,7 +403,7 @@ namespace ObjectChess.Test
                                                  {"p","p","p","p","p","p","p","p"},
                                                  {"r","n","b","q","k","b","n","r"}};
             Game.SetupPieces(Board, PieceSetup);
-            //Game.Move("G1", "F3");
+            Game.MovePiece(Board, "G1".AlgebraicNotationToRankFile(), "F3".AlgebraicNotationToRankFile());
 
             Game CorrectGame = new Game();
             Board CorrectBoard = CorrectGame.SetupBoard();
