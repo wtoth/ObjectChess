@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,9 +56,45 @@ namespace ObjectChess.Models
                 return false;
             }
         }
-        public void IsCheck()
+        public bool IsCheck(Board board)
         {
-            throw new System.NotImplementedException();
+            bool inCheck = false;
+            Color CurrentColor = CurrentTurn;
+            PieceLocation KingSquare = new PieceLocation();
+            foreach (var square in board.BoardArray)
+            {
+                if (square.IsPiece())
+                {
+                    if (square.Piece.PieceType == PieceType.King & square.Piece.Color == CurrentColor)
+                    {
+                        KingSquare = square.Position;
+                    }
+                }
+            }
+            //run possible moves for every single piece
+            List<PieceLocation> PossibleMoves = new List<PieceLocation>();
+            foreach (var square in board.BoardArray)
+            {
+                if (square.IsPiece())
+                {
+                    square.Piece.CalcPossibleMoves();
+                    if (square.Piece.Color == CurrentColor)
+                    {
+                        foreach (var possiblemove in square.Piece.PossibleMoves)
+                        {
+                            PossibleMoves.Add(possiblemove);
+                        }
+                    }
+                }
+            }
+            //check if king position is in possible moves for any piece
+            bool KingInPossibleMoves = PossibleMoves.Any(item => item.Rank == KingSquare.Rank & item.File == KingSquare.File);
+            //if so return true
+            if (KingInPossibleMoves)
+            {
+                inCheck = true;
+            }
+            return inCheck;
         }
 
         public void IsCheckmate()

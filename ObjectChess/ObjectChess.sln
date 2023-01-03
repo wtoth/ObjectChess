@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectChess.ConsoleApp", "O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectChess.Models", "ObjectChess.Models\ObjectChess.Models.csproj", "{EF66D395-1D3F-4A86-B5A2-13CDDF7026F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectChess.Test", "ObjectChess.Test\ObjectChess.Test.csproj", "{5A30B8BD-FC87-4FC6-9050-0E2F6414ACE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectChess.Test", "ObjectChess.Test\ObjectChess.Test.csproj", "{5A30B8BD-FC87-4FC6-9050-0E2F6414ACE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectChess.CustomExtensions", "ObjectChess.CustomExtensions\ObjectChess.CustomExtensions.csproj", "{E995522F-BE50-4B20-A0FD-5C54AC534832}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5A30B8BD-FC87-4FC6-9050-0E2F6414ACE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A30B8BD-FC87-4FC6-9050-0E2F6414ACE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A30B8BD-FC87-4FC6-9050-0E2F6414ACE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E995522F-BE50-4B20-A0FD-5C54AC534832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E995522F-BE50-4B20-A0FD-5C54AC534832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E995522F-BE50-4B20-A0FD-5C54AC534832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E995522F-BE50-4B20-A0FD-5C54AC534832}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

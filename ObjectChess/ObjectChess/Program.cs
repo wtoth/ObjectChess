@@ -1,5 +1,6 @@
 ﻿using ObjectChess.ConsoleApp;
 using ObjectChess.Models;
+using ObjectChess.CustomExtensions;
 using System.ComponentModel;
 
 namespace ObjectChess
@@ -25,12 +26,6 @@ namespace ObjectChess
                                                  {"r","n","b","q","k","b","n","r"}};
             Board Board = Game.SetupBoard();
             Game.SetupPieces(Board, OtherFenSetup);
-
-            Console.WriteLine();
-            foreach (var thing in Game.GetBoardFen(Board))
-            {
-                Console.Write(thing);
-            }
             Console.WriteLine();
             ConsolePlayer.GameLoop(Game, Board, Interpreter);
         }

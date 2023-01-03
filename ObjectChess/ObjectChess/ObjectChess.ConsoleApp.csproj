@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ObjectChess.CustomExtensions\ObjectChess.CustomExtensions.csproj" />
     <ProjectReference Include="..\ObjectChess.Models\ObjectChess.Models.csproj" />
   </ItemGroup>
 

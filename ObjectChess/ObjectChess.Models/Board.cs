@@ -30,12 +30,6 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
-
-        public void MovePatterns()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void CanCastle()
         {
             throw new System.NotImplementedException();
