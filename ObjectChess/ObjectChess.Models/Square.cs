@@ -16,6 +16,12 @@ namespace ObjectChess.Models
             this.Position = position;
             this.Attacked= attacked;
         }
+        public Square(PieceLocation position, Piece piece, bool attacked = false)
+        {
+            this.Position = position;
+            this.Attacked = attacked;
+            this.Piece = piece;
+        }
         public bool SquareAttacked()
         {
             throw new System.NotImplementedException();

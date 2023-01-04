@@ -19,14 +19,25 @@ namespace ObjectChess.ConsoleApp
                 if (Game.CurrentTurn == Color.White)
                 {
                     bool InCheck = Game.IsCheck(Board);
+                    if (InCheck)
+                    {
+                        if (Game.IsCheckmate(Board, Game, Game.CurrentTurn))
+                        {
+                            break;
+                        }
+                    }
                     while (!turnComplete)
                     {
+                        Console.Clear();
                         //Interpreter.PrintOutput(Game.GetBoard(Board));
                         Interpreter.PrintFenOutput(Game.GetBoardFen(Board));
                         Console.WriteLine("White's turn");
+                        if (InCheck)
+                        {
+                            Console.WriteLine("You are in check");
+                        }
                         Console.WriteLine("What Piece do you want to move?");
                         PieceLocation PieceToMove = Console.ReadLine().AlgebraicNotationToRankFile();
-                        //Need to check if there is a piece there and if it is white
                         List<PieceLocation> PossibleMoves = Game.PossibleMoves(PieceToMove, Board);
                         if (!Game.IsMoveablePiece(Board, PieceToMove, Game.CurrentTurn, PossibleMoves))
                         {
@@ -45,6 +56,18 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
+                        if (InCheck)
+                        {
+                            Board BoardClone = Board.Clone();
+                            Game.MovePiece(BoardClone, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
+                            if (Game.IsCheck(BoardClone))
+                            {
+                                Console.WriteLine("Please select a move that moves you out of check");
+                                Console.ReadLine();
+                                continue;
+
+                            }
+                        }
                         Game.MovePiece(Board, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
                         turnComplete = true;
                     }
@@ -55,6 +78,7 @@ namespace ObjectChess.ConsoleApp
                     bool InCheck = Game.IsCheck(Board);
                     while (!turnComplete)
                     {
+                        Console.Clear();
                         Interpreter.PrintOutput(Game.GetBoard(Board));
                         Console.WriteLine("Black's turn");
                         Console.WriteLine("What Piece do you want to move?");
@@ -78,16 +102,32 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
+                        if (InCheck)
+                        {
+                            Board BoardClone = Board.Clone();
+                            Game.MovePiece(BoardClone, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
+                            if (Game.IsCheck(BoardClone))
+                            {
+                                Console.WriteLine("Please select a move that moves you out of check");
+                                Console.ReadLine();
+                                continue;
+
+                            }
+                        }
                         Game.MovePiece(Board, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
                         turnComplete = true;
                     }
                     Game.CurrentTurn = Color.White;
                 }
             }
-            //if(Game.IsCheckmate()){
-            //  playing = false;
-            //}
-            //playing = false;
+            if (Game.CurrentTurn == Color.White)
+            {
+                Console.WriteLine("Black Wins!");
+            }
+            else
+            {
+                Console.WriteLine("White Wins!");
+            }
         }
     }
 }

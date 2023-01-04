@@ -78,7 +78,7 @@ namespace ObjectChess.Models
                 if (square.IsPiece())
                 {
                     square.Piece.CalcPossibleMoves();
-                    if (square.Piece.Color == CurrentColor)
+                    if (square.Piece.Color != CurrentColor)
                     {
                         foreach (var possiblemove in square.Piece.PossibleMoves)
                         {
@@ -96,10 +96,34 @@ namespace ObjectChess.Models
             }
             return inCheck;
         }
-
-        public void IsCheckmate()
+        public bool IsCheckmate(Board board, Game game, Color currentcolor)
         {
-            throw new System.NotImplementedException();
+            Board BoardClone = board.Clone();
+            foreach (var square in BoardClone.BoardArray)
+            {
+                if (square.Piece != null)
+                {
+                    if (square.Piece.Color == currentcolor)
+                    {
+                        square.Piece.CalcPossibleMoves();
+                        foreach (var move in square.Piece.PossibleMoves)
+                        {
+                            game.MovePiece(BoardClone, square.Position, move);
+                            if (!game.IsCheck(BoardClone))
+                            {
+                                game.MovePiece(BoardClone, move, square.Position);
+                                return false;
+                            }
+                            else
+                            {
+                                game.MovePiece(BoardClone, move, square.Position);
+                            }
+                        }
+                    }
+                }
+                
+            }
+            return true;
         }
         public List<PieceLocation> PossibleMoves(PieceLocation rankfile, Board board)
         {

@@ -180,7 +180,7 @@ namespace ObjectChess.Models
             //Checks if there in either of the attacking positions for the pawn
             var rank = Square.Position.Rank;
             var file = Square.Position.File + 1;
-            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            while (file <= 7)
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
@@ -200,7 +200,7 @@ namespace ObjectChess.Models
             }
             rank = Square.Position.Rank;
             file = Square.Position.File - 1;
-            while ((rank >= 0) & (rank <= 7) & (file >= 0) & (file <= 7))
+            while (file >= 0)
             {
                 if (Board.BoardArray[rank, file].IsPiece())
                 {
