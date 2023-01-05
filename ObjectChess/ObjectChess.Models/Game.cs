@@ -87,6 +87,18 @@ namespace ObjectChess.Models
                     }
                 }
             }
+            //Checks all squares for whether they are attacked by opponent pieces
+            foreach (var square in board.BoardArray)
+            {
+                if (PossibleMoves.Any(x => x.Rank == square.Position.Rank && x.File == square.Position.File))
+                {
+                    square.Attacked = true;
+                }
+                else
+                {
+                    square.Attacked = false;
+                }
+            }
             //check if king position is in possible moves for any piece
             bool KingInPossibleMoves = PossibleMoves.Any(item => item.Rank == KingSquare.Rank & item.File == KingSquare.File);
             //if so return true
