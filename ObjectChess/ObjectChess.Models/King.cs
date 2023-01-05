@@ -35,6 +35,14 @@ namespace ObjectChess.Models
             //{
             //    possiblemoves.Add(move);
             //}
+            for (int i = possiblemoves.Count - 1; i >= 0; i--)
+                {
+                Square MoveSquare = Board.BoardArray[possiblemoves[i].Rank, possiblemoves[i].File];
+                if (MoveSquare.Attacked)
+                {
+                    possiblemoves.RemoveAt(i);
+                }
+            }
             this.PossibleMoves = possiblemoves;
         }
         public override char GetAlgNotation()
