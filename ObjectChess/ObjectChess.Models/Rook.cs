@@ -30,7 +30,7 @@ namespace ObjectChess.Models
         {
             return 'R';
         }
-        private List<PieceLocation> HorizontalMove()
+        private List<PieceLocation> VerticalMove()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
             //Checks if there in either of the attacking positions for the pawn
@@ -77,7 +77,7 @@ namespace ObjectChess.Models
             return possiblemoves;
         }
 
-        private List<PieceLocation> VerticalMove()
+        private List<PieceLocation> HorizontalMove()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
             //Checks if there in either of the attacking positions for the pawn

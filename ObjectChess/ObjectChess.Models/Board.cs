@@ -21,7 +21,6 @@ namespace ObjectChess.Models
                     BoardArray[i, j] = new Square(position, false);
                 }
             }
-
         }
         public Board(Board board)
         {
@@ -35,27 +34,27 @@ namespace ObjectChess.Models
                     {
                         if (oldPiece.PieceType == PieceType.Pawn)
                         {
-                            newPiece = new Pawn(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new Pawn(oldPiece.Square, oldPiece.Color, null);
                         }
                         else if (oldPiece.PieceType == PieceType.Queen)
                         {
-                            newPiece = new Queen(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new Queen(oldPiece.Square, oldPiece.Color, null);
                         }
                         else if (oldPiece.PieceType == PieceType.King)
                         {
-                            newPiece = new King(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new King(oldPiece.Square, oldPiece.Color, null);
                         }
                         else if (oldPiece.PieceType == PieceType.Rook)
                         {
-                            newPiece = new Rook(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new Rook(oldPiece.Square, oldPiece.Color, null);
                         }
                         else if (oldPiece.PieceType == PieceType.Bishop)
                         {
-                            newPiece = new Bishop(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new Bishop(oldPiece.Square, oldPiece.Color, null);
                         }
                         else if (oldPiece.PieceType == PieceType.Knight)
                         {
-                            newPiece = new Knight(oldPiece.Square, oldPiece.Color, oldPiece.Board);
+                            newPiece = new Knight(oldPiece.Square, oldPiece.Color, null);
                         }
                         else
                         {
@@ -86,6 +85,13 @@ namespace ObjectChess.Models
         public Board Clone()
         {
             Board boardClone = new Board(this);
+            foreach (var square in boardClone.BoardArray)
+            {
+                if (square.IsPiece())
+                {
+                    square.Piece.Board = boardClone;
+                }
+            }
             return boardClone;
         }
     }

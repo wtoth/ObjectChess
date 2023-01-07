@@ -125,7 +125,7 @@ namespace ObjectChess.Models
             return possiblemoves;
         }
 
-        private List<PieceLocation> HorizontalMove()
+        private List<PieceLocation> VerticalMove()
         {
             {
                 List<PieceLocation> possiblemoves = new List<PieceLocation>();
@@ -174,10 +174,10 @@ namespace ObjectChess.Models
             }
         }
 
-        private List<PieceLocation> VerticalMove()
+        private List<PieceLocation> HorizontalMove()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
-            //Checks if there in either of the attacking positions for the pawn
+            //Checks if there in either of the attacking positions for the Queen
             var rank = Square.Position.Rank;
             var file = Square.Position.File + 1;
             while (file <= 7)

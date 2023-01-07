@@ -68,6 +68,7 @@ namespace ObjectChess.Models
                     if (square.Piece.PieceType == PieceType.King & square.Piece.Color == CurrentColor)
                     {
                         KingSquare = square.Position;
+                        break;
                     }
                 }
             }
