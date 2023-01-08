@@ -15,6 +15,30 @@ namespace ObjectChess.Models
             PieceType = PieceType.King;
             Game = game;
         }
+        public override void Move(Square CurrentSquare, Square DestinationSquare, Piece AttackedPiece, List<Piece> Captured)
+        {
+            HasMoved = true;
+            if (Math.Abs(CurrentSquare.Position.File - DestinationSquare.Position.File) > 1)
+            {
+                Castle(CurrentSquare, DestinationSquare);
+            }
+            else
+            {
+                if (AttackedPiece != null)
+                {
+                    Captured.Add(AttackedPiece);
+                    this.Square = DestinationSquare;
+                    DestinationSquare.Piece = this;
+                    CurrentSquare.Piece = null;
+                }
+                else
+                {
+                    this.Square = DestinationSquare;
+                    DestinationSquare.Piece = this;
+                    CurrentSquare.Piece = null;
+                }
+            }
+        }
         public override void CalcPossibleMoves()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
@@ -154,11 +178,62 @@ namespace ObjectChess.Models
             return possiblemoves;
         }
 
-        public void Castle()
+        public void Castle(Square CurrentSquare, Square DestinationSquare)
         {
-            if (this.CanKingCastle)
+            King King = (King)CurrentSquare.Piece;
+            if (King.Color == Color.White)
             {
+                if (DestinationSquare.Position.File == 6)
+                {
+                    King.Square = DestinationSquare;
+                    DestinationSquare.Piece = King;
+                    CurrentSquare.Piece = null;
 
+                    Piece Rook = this.Board.BoardArray[0,7].Piece;
+                    Square RookDestinationSquare = this.Board.BoardArray[0, 5];
+                    Rook.Square = RookDestinationSquare;
+                    RookDestinationSquare.Piece = Rook;
+                    this.Board.BoardArray[0, 7].Piece = null;
+                }
+                else if (DestinationSquare.Position.File == 2)
+                {
+                    King.Square = DestinationSquare;
+                    DestinationSquare.Piece = King;
+                    CurrentSquare.Piece = null;
+
+                    Piece Rook = this.Board.BoardArray[0, 0].Piece;
+                    Square RookDestinationSquare = this.Board.BoardArray[0, 3];
+                    Rook.Square = RookDestinationSquare;
+                    RookDestinationSquare.Piece = Rook;
+                    this.Board.BoardArray[0, 0].Piece = null;
+                }
+            }
+            else
+            {
+                if (DestinationSquare.Position.File == 6)
+                {
+                    King.Square = DestinationSquare;
+                    DestinationSquare.Piece = King;
+                    CurrentSquare.Piece = null;
+
+                    Piece Rook = this.Board.BoardArray[7, 7].Piece;
+                    Square RookDestinationSquare = this.Board.BoardArray[7, 5];
+                    Rook.Square = RookDestinationSquare;
+                    RookDestinationSquare.Piece = Rook;
+                    this.Board.BoardArray[7, 7].Piece = null;
+                }
+                else if (DestinationSquare.Position.File == 2)
+                {
+                    King.Square = DestinationSquare;
+                    DestinationSquare.Piece = King;
+                    CurrentSquare.Piece = null;
+
+                    Piece Rook = this.Board.BoardArray[7, 0].Piece;
+                    Square RookDestinationSquare = this.Board.BoardArray[7, 3];
+                    Rook.Square = RookDestinationSquare;
+                    RookDestinationSquare.Piece = Rook;
+                    this.Board.BoardArray[7, 0].Piece = null;
+                }
             }
         }
 
@@ -269,7 +344,6 @@ namespace ObjectChess.Models
             }
             return possiblemoves;
         }
-
         public List<PieceLocation> VerticalMove()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
@@ -307,11 +381,6 @@ namespace ObjectChess.Models
                 }
             }
             return possiblemoves;
-        }
-
-        public void IsCheck()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

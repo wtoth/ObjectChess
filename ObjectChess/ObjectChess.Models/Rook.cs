@@ -12,6 +12,24 @@ namespace ObjectChess.Models
         {
             PieceType = PieceType.Rook;
         }
+        public override void Move(Square CurrentSquare, Square DestinationSquare, Piece AttackedPiece, List<Piece> Captured)
+        {
+            HasMoved = true;
+            if (AttackedPiece != null)
+            {
+                Captured.Add(AttackedPiece);
+                this.Square = DestinationSquare;
+                DestinationSquare.Piece = this;
+                CurrentSquare.Piece = null;
+            }
+            else
+            {
+                this.Square = DestinationSquare;
+                DestinationSquare.Piece = this;
+                CurrentSquare.Piece = null;
+            }
+        }
+
         public override void CalcPossibleMoves()
         {
             List<PieceLocation> possiblemoves = new List<PieceLocation>();
