@@ -7,6 +7,7 @@ namespace ObjectChess.Models
 {
     public class Rook: Piece
     {
+        public bool HasMoved { get; set; } = false;
         public Rook(Square square, Color color, Board board):base(square, color, board) 
         {
             PieceType = PieceType.Rook;

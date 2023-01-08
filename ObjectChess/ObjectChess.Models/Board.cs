@@ -22,7 +22,7 @@ namespace ObjectChess.Models
                 }
             }
         }
-        public Board(Board board)
+        public Board(Board board, Game game)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -42,7 +42,7 @@ namespace ObjectChess.Models
                         }
                         else if (oldPiece.PieceType == PieceType.King)
                         {
-                            newPiece = new King(oldPiece.Square, oldPiece.Color, null);
+                            newPiece = new King(oldPiece.Square, oldPiece.Color, null, game);
                         }
                         else if (oldPiece.PieceType == PieceType.Rook)
                         {
@@ -82,9 +82,9 @@ namespace ObjectChess.Models
         {
             throw new System.NotImplementedException();
         }
-        public Board Clone()
+        public Board Clone(Game game)
         {
-            Board boardClone = new Board(this);
+            Board boardClone = new Board(this, game);
             foreach (var square in boardClone.BoardArray)
             {
                 if (square.IsPiece())

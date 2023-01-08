@@ -13,6 +13,7 @@ namespace ObjectChess.Models
     {
         public Color CurrentTurn = Color.White;
         public List<Piece> Captured { get; set; }
+        public bool Check { get; set; } = false;
         public Game() 
         { 
             Captured= new List<Piece>();
@@ -111,7 +112,7 @@ namespace ObjectChess.Models
         }
         public bool IsCheckmate(Board board, Game game, Color currentcolor)
         {
-            Board BoardClone = board.Clone();
+            Board BoardClone = board.Clone(game);
             foreach (var square in BoardClone.BoardArray)
             {
                 if (square.Piece != null)
@@ -275,7 +276,7 @@ namespace ObjectChess.Models
                     }
                     else if (PieceSetup[i, j] == "k")
                     {
-                        King king = new King(board.BoardArray[i, j], pieceColor, board);
+                        King king = new King(board.BoardArray[i, j], pieceColor, board, this);
                         board.BoardArray[i, j].Piece = king;
                     }
                     else if (PieceSetup[i, j] == "p")
@@ -319,7 +320,7 @@ namespace ObjectChess.Models
                 {
                     if (letter == 'k')
                     {
-                        King king = new King(board.BoardArray[rank, file], Color.Black, board);
+                        King king = new King(board.BoardArray[rank, file], Color.Black, board, this);
                         board.BoardArray[rank, file].Piece = king;
                         file++;
                     }
@@ -355,7 +356,7 @@ namespace ObjectChess.Models
                     }
                     if (letter == 'K')
                     {
-                        King king = new King(board.BoardArray[rank, file], Color.White, board);
+                        King king = new King(board.BoardArray[rank, file], Color.White, board, this);
                         board.BoardArray[rank, file].Piece = king;
                         file++;
                     }

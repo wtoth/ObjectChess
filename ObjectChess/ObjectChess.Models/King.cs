@@ -7,9 +7,13 @@ namespace ObjectChess.Models
 {
     public class King: Piece
     {
-        public King(Square square, Color color, Board board) : base(square, color, board) 
+        bool HasMoved { get; set; } = false;
+        bool CanKingCastle { get; set; } = false;
+        Game Game { get; set; }
+        public King(Square square, Color color, Board board, Game game) : base(square, color, board) 
         {
             PieceType = PieceType.King;
+            Game = game;
         }
         public override void CalcPossibleMoves()
         {
@@ -30,11 +34,13 @@ namespace ObjectChess.Models
                 possiblemoves.Add(move);
             }
             //Needs implementation
-            //List<List<int>> possiblecastle = CanCastle();
-            //foreach (var move in possiblecastle)
-            //{
-            //    possiblemoves.Add(move);
-            //}
+            List<PieceLocation> castlemoves = CanCastle();
+            foreach (var move in castlemoves)
+            {
+                possiblemoves.Add(move);
+            }
+
+            //This checks if a king move puts the king into check and if so, removes that move from possible moves
             for (int i = possiblemoves.Count - 1; i >= 0; i--)
                 {
                 Square MoveSquare = Board.BoardArray[possiblemoves[i].Rank, possiblemoves[i].File];
@@ -49,14 +55,111 @@ namespace ObjectChess.Models
         {
             return 'K';
         }
-        public List<List<int>> CanCastle()
+        //Castling rules: King hasn't moved, rook hasn't moved, king not in check, king doesn't pass through check, and no pieces between king and rook
+        public List<PieceLocation> CanCastle()
         {
-            throw new System.NotImplementedException();
+            List<PieceLocation> possiblemoves = new List<PieceLocation>();
+            if (Game.Check)
+            {
+                return possiblemoves;
+            }
+            if (!HasMoved)
+            {
+                if (this.Color == Color.White)
+                {
+                    //White Castle Kingside
+                    if (this.Board.BoardArray[0, 7].Piece != null)
+                    {
+                        if (this.Board.BoardArray[0, 7].Piece.PieceType == PieceType.Rook)
+                        {
+                            Rook rook = (Rook)this.Board.BoardArray[0, 7].Piece;
+                            if (!rook.HasMoved)
+                            {
+                                if (!this.Board.BoardArray[0, 5].IsPiece() & !this.Board.BoardArray[0, 6].IsPiece())
+                                {
+                                    if (!this.Board.BoardArray[0, 5].Attacked & !this.Board.BoardArray[0, 6].Attacked)
+                                    {
+                                        PieceLocation kingsideCastle = new PieceLocation(0, 6);
+                                        possiblemoves.Add(kingsideCastle);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    //White Castle Queenside
+                    if (this.Board.BoardArray[0, 0].Piece != null)
+                    {
+                        if (this.Board.BoardArray[0, 0].Piece.PieceType == PieceType.Rook)
+                        {
+                            Rook rook = (Rook)this.Board.BoardArray[0, 0].Piece;
+                            if (!rook.HasMoved)
+                            {
+                                if (!this.Board.BoardArray[0, 1].IsPiece() & !this.Board.BoardArray[0, 2].IsPiece() & !this.Board.BoardArray[0, 3].IsPiece())
+                                {
+                                    if (!this.Board.BoardArray[0, 2].Attacked & !this.Board.BoardArray[0, 3].Attacked)
+                                    {
+                                        PieceLocation kingsideCastle = new PieceLocation(0, 2);
+                                        possiblemoves.Add(kingsideCastle);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    //Black Castle Kingside
+                    if (this.Board.BoardArray[7, 7].Piece != null)
+                    {
+                        if (this.Board.BoardArray[7, 7].Piece.PieceType == PieceType.Rook)
+                        {
+                            Rook rook = (Rook)this.Board.BoardArray[7, 7].Piece;
+                            if (!rook.HasMoved)
+                            {
+                                if (!this.Board.BoardArray[7, 5].IsPiece() & !this.Board.BoardArray[7, 6].IsPiece())
+                                {
+                                    if (!this.Board.BoardArray[7, 5].Attacked & !this.Board.BoardArray[7, 6].Attacked)
+                                    {
+                                        PieceLocation kingsideCastle = new PieceLocation(7, 6);
+                                        possiblemoves.Add(kingsideCastle);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //Black Castle Queenside
+                    if (this.Board.BoardArray[7, 0].Piece != null)
+                    {
+                        if (this.Board.BoardArray[7, 0].Piece.PieceType == PieceType.Rook)
+                        {
+                            Rook rook = (Rook)this.Board.BoardArray[7, 0].Piece;
+                            if (!rook.HasMoved)
+                            {
+                                if (!this.Board.BoardArray[7, 1].IsPiece() & !this.Board.BoardArray[7, 2].IsPiece() & !this.Board.BoardArray[7, 3].IsPiece())
+                                {
+                                    if (!this.Board.BoardArray[7, 2].Attacked & !this.Board.BoardArray[7, 3].Attacked)
+                                    {
+                                        PieceLocation kingsideCastle = new PieceLocation(7, 2);
+                                        possiblemoves.Add(kingsideCastle);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            return possiblemoves;
         }
 
         public void Castle()
         {
-            throw new System.NotImplementedException();
+            if (this.CanKingCastle)
+            {
+
+            }
         }
 
         private List<PieceLocation> DiagonalMove()

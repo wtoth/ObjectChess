@@ -18,8 +18,8 @@ namespace ObjectChess.ConsoleApp
                 bool turnComplete = false;
                 if (Game.CurrentTurn == Color.White)
                 {
-                    bool InCheck = Game.IsCheck(Board);
-                    if (InCheck)
+                    Game.Check = Game.IsCheck(Board);
+                    if (Game.Check)
                     {
                         if (Game.IsCheckmate(Board, Game, Game.CurrentTurn))
                         {
@@ -32,7 +32,7 @@ namespace ObjectChess.ConsoleApp
                         //Interpreter.PrintOutput(Game.GetBoard(Board));
                         Interpreter.PrintFenOutput(Game.GetBoardFen(Board));
                         Console.WriteLine("White's turn");
-                        if (InCheck)
+                        if (Game.Check)
                         {
                             Console.WriteLine("You are in check");
                         }
@@ -56,9 +56,9 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
-                        if (InCheck)
+                        if (Game.Check)
                         {
-                            Board BoardClone = Board.Clone();
+                            Board BoardClone = Board.Clone(Game);
                             Game.MovePiece(BoardClone, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
                             if (Game.IsCheck(BoardClone))
                             {
@@ -75,12 +75,23 @@ namespace ObjectChess.ConsoleApp
                 }
                 else
                 {
-                    bool InCheck = Game.IsCheck(Board);
+                    Game.Check = Game.IsCheck(Board);
+                    if (Game.Check)
+                    {
+                        if (Game.IsCheckmate(Board, Game, Game.CurrentTurn))
+                        {
+                            break;
+                        }
+                    }
                     while (!turnComplete)
                     {
                         Console.Clear();
                         Interpreter.PrintOutput(Game.GetBoard(Board));
                         Console.WriteLine("Black's turn");
+                        if (Game.Check)
+                        {
+                            Console.WriteLine("You are in check");
+                        }
                         Console.WriteLine("What Piece do you want to move?");
                         PieceLocation PieceToMove = Console.ReadLine().AlgebraicNotationToRankFile();
                         //Need to check if there is a piece there and if it is black
@@ -102,9 +113,9 @@ namespace ObjectChess.ConsoleApp
                             Console.WriteLine("Sorry you can't move your piece there. Please try again.");
                             continue;
                         }
-                        if (InCheck)
+                        if (Game.Check)
                         {
-                            Board BoardClone = Board.Clone();
+                            Board BoardClone = Board.Clone(Game);
                             Game.MovePiece(BoardClone, PieceToMove, PieceDestination.AlgebraicNotationToRankFile());
                             if (Game.IsCheck(BoardClone))
                             {
