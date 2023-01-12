@@ -169,7 +169,6 @@ namespace ObjectChess.Models
                                         possiblemoves.Add(kingsideCastle);
                                     }
                                 }
-
                             }
                         }
                     }
