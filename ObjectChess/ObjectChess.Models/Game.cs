@@ -110,27 +110,27 @@ namespace ObjectChess.Models
             }
             return inCheck;
         }
-        public bool IsCheckmate(Board board, Game game, Color currentcolor)
+        public bool IsCheckmate(Board board)
         {
-            Board BoardClone = board.Clone(game);
+            Board BoardClone = board.Clone(this);
             foreach (var square in BoardClone.BoardArray)
             {
                 if (square.Piece != null)
                 {
-                    if (square.Piece.Color == currentcolor)
+                    if (square.Piece.Color == CurrentTurn)
                     {
                         square.Piece.CalcPossibleMoves();
                         foreach (var move in square.Piece.PossibleMoves)
                         {
-                            game.MovePiece(BoardClone, square.Position, move);
-                            if (!game.IsCheck(BoardClone))
+                            MovePiece(BoardClone, square.Position, move);
+                            if (!IsCheck(BoardClone))
                             {
-                                game.MovePiece(BoardClone, move, square.Position);
+                                MovePiece(BoardClone, move, square.Position);
                                 return false;
                             }
                             else
                             {
-                                game.MovePiece(BoardClone, move, square.Position);
+                                MovePiece(BoardClone, move, square.Position);
                             }
                         }
                     }

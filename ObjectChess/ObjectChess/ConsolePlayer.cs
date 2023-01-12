@@ -21,7 +21,7 @@ namespace ObjectChess.ConsoleApp
                     Game.Check = Game.IsCheck(Board);
                     if (Game.Check)
                     {
-                        if (Game.IsCheckmate(Board, Game, Game.CurrentTurn))
+                        if (Game.IsCheckmate(Board))
                         {
                             break;
                         }
@@ -78,7 +78,7 @@ namespace ObjectChess.ConsoleApp
                     Game.Check = Game.IsCheck(Board);
                     if (Game.Check)
                     {
-                        if (Game.IsCheckmate(Board, Game, Game.CurrentTurn))
+                        if (Game.IsCheckmate(Board))
                         {
                             break;
                         }
