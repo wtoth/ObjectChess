@@ -122,20 +122,15 @@ namespace ObjectChess.Models
                         square.Piece.CalcPossibleMoves();
                         foreach (var move in square.Piece.PossibleMoves)
                         {
-                            MovePiece(BoardClone, square.Position, move);
-                            if (!IsCheck(BoardClone))
+                            Board IndividualMoveClone = board.Clone(this);
+                            MovePiece(IndividualMoveClone, square.Position, move);
+                            if (!IsCheck(IndividualMoveClone))
                             {
-                                MovePiece(BoardClone, move, square.Position);
                                 return false;
-                            }
-                            else
-                            {
-                                MovePiece(BoardClone, move, square.Position);
                             }
                         }
                     }
                 }
-                
             }
             return true;
         }
