@@ -112,7 +112,7 @@ namespace ObjectChess.Models
                 }
                 //Check if there is not a piece in front of current piece for two moves and if the pawn is in the second rank
                 PieceLocation moveforwardtwo = new PieceLocation(this.Square.Position.Rank + 2, this.Square.Position.File);
-                Square squaretwoinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                Square squaretwoinfront = this.Board.BoardArray[moveforwardtwo.Rank, moveforwardtwo.File];
                 if (!squaretwoinfront.IsPiece() && moveforwardtwo.Rank <= 7 && this.Square.Position.Rank == 1)
                 {
                     possiblemoves.Add(moveforwardtwo);
@@ -129,7 +129,7 @@ namespace ObjectChess.Models
                 }
                 //Check if there is not a piece in front of current piece for two moves and if the pawn is in the second rank
                 PieceLocation moveforwardtwo = new PieceLocation(this.Square.Position.Rank - 2, this.Square.Position.File);
-                Square squaretwoinfront = this.Board.BoardArray[moveforwardone.Rank, moveforwardone.File];
+                Square squaretwoinfront = this.Board.BoardArray[moveforwardtwo.Rank, moveforwardtwo.File];
                 if (!squaretwoinfront.IsPiece() && moveforwardtwo.Rank >= 0 && this.Square.Position.Rank == 6)
                 {
                     possiblemoves.Add(moveforwardtwo);
